@@ -1,0 +1,42 @@
+{
+  "name": "as-interiors",
+  "version": "1.0.0",
+  "description": "A.S Interiors - Premium Website",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@react-three/drei": "9.114",
+    "@react-three/fiber": "8.17",
+    "framer-motion": "^11.18.2",
+    "gsap": "3.12",
+    "lenis": "1.1",
+    "lucide-react": "^0.460.0",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.0",
+    "@types/react": "18.3",
+    "@types/react-dom": "18.3",
+    "@types/three": "^0.170.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "autoprefixer": "^10.5.2",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.35",
+    "postcss": "^8.5.16",
+    "prettier": "^3.9.4",
+    "tailwindcss": "3.4",
+    "typescript": "5.5"
+  }
+}
