@@ -17,26 +17,26 @@ const highlights = [
 
 export default function AboutPreview() {
   return (
-    <SectionWrapper bg="light" className="py-20 md:py-28">
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <SectionWrapper bg="light" className="py-12 sm:py-16 md:py-20 lg:py-28">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
         {/* Content */}
         <div>
           <FadeIn direction="left">
-            <div className="inline-flex items-center gap-2 bg-accent-gold/10 rounded-full px-4 py-1.5 mb-6">
-              <span className="text-accent-gold text-sm font-medium">About Us</span>
+            <div className="inline-flex items-center gap-2 bg-accent-gold/10 rounded-full px-3 py-1 sm:px-4 sm:py-1.5 mb-4 sm:mb-6">
+              <span className="text-accent-gold text-xs sm:text-sm font-medium">About Us</span>
             </div>
           </FadeIn>
 
           <AnimatedText
             as="h2"
             delay={0.2}
-            className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-6 leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-4 sm:mb-6 leading-tight"
           >
             Quality Work at Affordable Prices
           </AnimatedText>
 
           <FadeIn delay={0.4} direction="up">
-            <p className="text-primary-600 mb-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-primary-600 mb-3 sm:mb-4 leading-relaxed">
               With over 7 years of experience, A.S Interiors has been delivering premium
               aluminium and glass solutions across Andhra Pradesh. We started with a simple
               mission: to provide high-quality work at honest prices.
@@ -44,7 +44,7 @@ export default function AboutPreview() {
           </FadeIn>
 
           <FadeIn delay={0.5} direction="up">
-            <p className="text-primary-600 mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-primary-600 mb-6 sm:mb-8 leading-relaxed">
               Today, we have our own manufacturing workshop and office, serving 500+
               satisfied customers across 13+ cities. Our commitment to quality has made
               us one of the most trusted names in the industry.
@@ -53,13 +53,13 @@ export default function AboutPreview() {
 
           {/* Highlights */}
           <FadeIn delay={0.6} direction="up">
-            <div className="grid grid-cols-2 gap-3 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-6 sm:mb-8">
               {highlights.map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
+                <div key={i} className="flex items-center gap-2 py-1">
                   <div className="w-5 h-5 rounded-full bg-accent-gold/10 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-accent-gold" />
                   </div>
-                  <span className="text-sm text-primary-700">{item}</span>
+                  <span className="text-xs sm:text-sm text-primary-700">{item}</span>
                 </div>
               ))}
             </div>
@@ -71,6 +71,7 @@ export default function AboutPreview() {
               variant="primary"
               icon={<ArrowRight className="w-4 h-4" />}
               iconPosition="right"
+              className="w-full sm:w-auto"
             >
               Learn More About Us
             </Button>
@@ -80,20 +81,20 @@ export default function AboutPreview() {
         {/* Image */}
         <FadeIn direction="right" delay={0.3}>
           <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl">
               <ImagePlaceholder
                 text="Our Workshop"
                 className="w-full h-full"
               />
             </div>
             {/* Floating Stats Card */}
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-accent-gold/10 flex items-center justify-center">
-                <span className="text-accent-gold font-bold text-xl">7+</span>
+            <div className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 bg-white rounded-xl shadow-xl p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent-gold/10 flex items-center justify-center">
+                <span className="text-accent-gold font-bold text-lg sm:text-xl">7+</span>
               </div>
               <div>
-                <p className="font-semibold text-primary-800">Years</p>
-                <p className="text-sm text-primary-500">of Experience</p>
+                <p className="font-semibold text-primary-800 text-sm sm:text-base">Years</p>
+                <p className="text-xs sm:text-sm text-primary-500">of Experience</p>
               </div>
             </div>
           </div>

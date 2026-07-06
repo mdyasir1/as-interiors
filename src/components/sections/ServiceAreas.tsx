@@ -8,57 +8,59 @@ import { ANDHRA_PRADESH_CITIES } from '@/lib/constants'
 
 export default function ServiceAreas() {
   return (
-    <SectionWrapper bg="white" className="py-20 md:py-28">
-      <div className="text-center mb-16">
+    <SectionWrapper bg="light" className="py-12 sm:py-16 md:py-20 lg:py-28">
+      {/* Header */}
+      <div className="text-center mb-10 sm:mb-12 md:mb-16">
         <AnimatedText
           as="p"
-          className="text-accent-gold font-medium tracking-widest uppercase mb-4"
+          className="text-accent-gold font-medium tracking-widest uppercase mb-3 sm:mb-4 text-xs sm:text-sm"
         >
-          Service Areas
+          Coverage Area
         </AnimatedText>
         <AnimatedText
           as="h2"
           delay={0.2}
-          className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-3 sm:mb-4"
         >
           Serving All of Andhra Pradesh
         </AnimatedText>
         <AnimatedText
           as="p"
           delay={0.4}
-          className="text-primary-600 max-w-2xl mx-auto"
+          className="text-sm sm:text-base text-primary-600 max-w-2xl mx-auto px-4 sm:px-0"
         >
           We provide our premium services across all major cities in Andhra Pradesh.
-          No matter where you are, we&apos;ve got you covered.
+          Wherever you are, we&apos;re ready to serve you.
         </AnimatedText>
       </div>
 
+      {/* Cities Grid */}
       <StaggerChildren
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
         stagger={0.05}
       >
-        {ANDHRA_PRADESH_CITIES.map((city, index) => (
+        {ANDHRA_PRADESH_CITIES.map((city) => (
           <div
-            key={index}
-            className="flex items-center gap-3 bg-primary-50 hover:bg-accent-gold/10 rounded-xl p-4 transition-all duration-300 group cursor-default"
+            key={city}
+            className="group bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-primary-100 hover:border-accent-gold/30 hover:shadow-lg transition-all duration-300 text-center"
           >
-            <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center group-hover:bg-accent-gold/20 transition-colors duration-300 flex-shrink-0">
-              <MapPin className="w-5 h-5 text-accent-gold" />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-2 sm:mb-3 group-hover:bg-accent-gold/20 transition-colors">
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-accent-gold" />
             </div>
-            <span className="text-primary-700 font-medium group-hover:text-accent-gold transition-colors duration-300">
+            <h3 className="font-medium text-primary-800 text-xs sm:text-sm">
               {city}
-            </span>
+            </h3>
           </div>
         ))}
       </StaggerChildren>
 
-      {/* Additional Note */}
+      {/* Additional Info */}
       <AnimatedText
         as="p"
-        delay={0.6}
-        className="text-center text-primary-500 mt-8 text-sm"
+        delay={0.8}
+        className="text-center text-primary-600 mt-8 sm:mt-10 md:mt-12 text-xs sm:text-sm px-4 sm:px-0"
       >
-        And many more cities across Andhra Pradesh. Contact us to check if we serve your area.
+        Don&apos;t see your city? Contact us - we may still be able to help!
       </AnimatedText>
     </SectionWrapper>
   )

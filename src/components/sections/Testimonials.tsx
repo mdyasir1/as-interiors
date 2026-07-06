@@ -1,126 +1,169 @@
 'use client'
 
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
-import FadeIn from '@/components/animations/FadeIn'
-import StarRating from '@/components/ui/StarRating'
 import { TESTIMONIALS } from '@/lib/constants'
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
-  const next = () => {
+  const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % TESTIMONIALS.length)
+  }, [])
+
+  const prev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+  }, [])
+
+  useEffect(() => {
+    if (isPaused) return
+
+    const interval = setInterval(next, 5000)
+    return () => clearInterval(interval)
+  }, [isPaused, next])
+
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+    }),
   }
 
-  const prev = () => {
-    setCurrent((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+  const [[page, direction], setPage] = useState([0, 0])
+
+  const paginate = (newDirection: number) => {
+    const newPage = page + newDirection
+    setPage([newPage, newDirection])
+    if (newDirection > 0) {
+      next()
+    } else {
+      prev()
+    }
   }
 
   return (
-    <SectionWrapper bg="light" className="py-20 md:py-28 relative overflow-hidden">
-      {/* Background Accent */}
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent-gold/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-
-      <div className="relative z-10">
+    <SectionWrapper bg="white" className="py-12 sm:py-16 md:py-20 lg:py-28">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-12">
           <AnimatedText
             as="p"
-            className="text-accent-gold font-medium tracking-widest uppercase mb-4"
+            className="text-accent-gold font-medium tracking-widest uppercase mb-3 sm:mb-4 text-xs sm:text-sm"
           >
             Testimonials
           </AnimatedText>
           <AnimatedText
             as="h2"
             delay={0.2}
-            className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-3 sm:mb-4"
           >
-            What Our Clients Say
+            What Our Customers Say
           </AnimatedText>
           <AnimatedText
             as="p"
             delay={0.4}
-            className="text-primary-600 max-w-2xl mx-auto"
+            className="text-sm sm:text-base text-primary-600 max-w-2xl mx-auto px-4 sm:px-0"
           >
             Don&apos;t just take our word for it. Here&apos;s what our satisfied
             customers have to say about our work.
           </AnimatedText>
         </div>
 
-        {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
-          <FadeIn key={current} direction="up">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center relative">
-              {/* Quote Icon */}
-              <div className="absolute top-6 left-8 text-accent-gold/10">
-                <Quote className="w-16 h-16" />
-              </div>
+        {/* Carousel */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="overflow-hidden">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={current}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.4 }}
+                className="bg-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12"
+              >
+                {/* Stars */}
+                <div className="flex items-center gap-1 mb-4 sm:mb-6">
+                  {[...Array(TESTIMONIALS[current].rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-accent-gold text-accent-gold" />
+                  ))}
+                </div>
 
-              {/* Content */}
-              <div className="relative z-10">
-                <StarRating
-                  rating={TESTIMONIALS[current].rating}
-                  size="lg"
-                  className="justify-center mb-6"
-                />
-
-                <p className="text-lg md:text-xl text-primary-700 italic leading-relaxed mb-8 max-w-2xl mx-auto">
+                {/* Quote */}
+                <blockquote className="text-base sm:text-lg md:text-xl text-primary-700 mb-6 sm:mb-8 leading-relaxed italic">
                   &ldquo;{TESTIMONIALS[current].content}&rdquo;
-                </p>
+                </blockquote>
 
                 {/* Author */}
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center text-accent-gold font-bold text-xl">
-                    {TESTIMONIALS[current].name.charAt(0)}
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent-gold/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent-gold font-bold text-lg sm:text-xl">
+                      {TESTIMONIALS[current].name.charAt(0)}
+                    </span>
                   </div>
-                  <div className="text-left">
-                    <h4 className="font-semibold text-primary-800">
+                  <div>
+                    <p className="font-semibold text-primary-800 text-sm sm:text-base">
                       {TESTIMONIALS[current].name}
-                    </h4>
-                    <p className="text-sm text-primary-500">
+                    </p>
+                    <p className="text-xs sm:text-sm text-primary-500">
                       {TESTIMONIALS[current].role}
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </FadeIn>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
+          <div className="flex items-center justify-center gap-4 mt-6 sm:mt-8">
             <button
-              onClick={prev}
-              className="w-12 h-12 rounded-full border border-primary-200 flex items-center justify-center text-primary-600 hover:border-accent-gold hover:text-accent-gold transition-colors duration-300"
+              onClick={() => paginate(-1)}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-primary-200 flex items-center justify-center text-primary-600 hover:bg-primary-50 transition-colors"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             {/* Dots */}
             <div className="flex items-center gap-2">
-              {TESTIMONIALS.map((_, index) => (
+              {TESTIMONIALS.map((_, i) => (
                 <button
-                  key={index}
-                  onClick={() => setCurrent(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === current
-                      ? 'bg-accent-gold w-8'
-                      : 'bg-primary-200 hover:bg-primary-300'
+                  key={i}
+                  onClick={() => {
+                    setCurrent(i)
+                    setPage([i, i > current ? 1 : -1])
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    i === current ? 'w-6 bg-accent-gold' : 'bg-primary-200'
                   }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
+                  aria-label={`Go to testimonial ${i + 1}`}
                 />
               ))}
             </div>
 
             <button
-              onClick={next}
-              className="w-12 h-12 rounded-full border border-primary-200 flex items-center justify-center text-primary-600 hover:border-accent-gold hover:text-accent-gold transition-colors duration-300"
+              onClick={() => paginate(1)}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-primary-200 flex items-center justify-center text-primary-600 hover:bg-primary-50 transition-colors"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>

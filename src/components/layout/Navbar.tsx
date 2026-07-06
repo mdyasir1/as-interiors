@@ -27,32 +27,45 @@ export default function Navbar() {
     setActiveDropdown(null)
   }, [pathname])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const handleDropdownToggle = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name)
   }
 
+  const textColor = isScrolled ? 'text-primary-800' : 'text-white'
+  const textSecondaryColor = isScrolled ? 'text-primary-600' : 'text-white/80'
+  const hoverColor = isScrolled ? 'hover:text-accent-gold' : 'hover:text-accent-gold'
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-350 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <nav className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-14 md:h-20">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group"
-          >
-            <span className="text-xl md:text-2xl font-serif font-semibold text-primary-800 group-hover:text-accent-gold transition-colors duration-300">
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className={`text-lg md:text-2xl font-serif font-semibold ${textColor} group-hover:text-accent-gold transition-colors duration-300`}>
               A.S Interiors
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {NAV_LINKS.map((link) => (
               <div
                 key={link.name}
@@ -62,10 +75,8 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`nav-link flex items-center gap-1 py-2 text-sm font-medium ${
-                    pathname === link.href
-                      ? 'text-accent-gold'
-                      : 'text-primary-600 hover:text-accent-gold'
+                  className={`flex items-center gap-1 py-2 text-sm font-medium ${hoverColor} transition-colors duration-200 ${
+                    pathname === link.href ? 'text-accent-gold' : textSecondaryColor
                   }`}
                 >
                   {link.name}
@@ -78,7 +89,6 @@ export default function Navbar() {
                   )}
                 </Link>
 
-                {/* Dropdown */}
                 <AnimatePresence>
                   {link.children && activeDropdown === link.name && (
                     <motion.div
@@ -93,7 +103,7 @@ export default function Navbar() {
                           <Link
                             key={child.name}
                             href={child.href}
-                            className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                            className={`block px-4 py-2.5 text-sm transition-colors duration-200 ${
                               pathname === child.href
                                 ? 'bg-accent-cream text-accent-darkGold'
                                 : 'text-primary-600 hover:bg-primary-50 hover:text-accent-gold'
@@ -114,7 +124,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${SITE_CONFIG.phone}`}
-              className="flex items-center gap-2 text-primary-600 hover:text-accent-gold transition-colors duration-300"
+              className={`flex items-center gap-2 ${textSecondaryColor} hover:text-accent-gold transition-colors duration-300`}
             >
               <Phone className="w-4 h-4" />
               <span className="text-sm font-medium">Call Us</span>
@@ -127,7 +137,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-primary-600 hover:text-accent-gold transition-colors duration-200"
+            className={`lg:hidden p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${textColor} hover:text-accent-gold transition-colors duration-200`}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -139,23 +149,21 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden"
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Menu Panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl lg:hidden"
+              className="fixed top-0 right-0 h-full w-[85vw] max-w-[320px] bg-white shadow-xl lg:hidden"
             >
               <div className="flex flex-col h-full">
                 {/* Menu Header */}
@@ -165,10 +173,10 @@ export default function Navbar() {
                   </span>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 text-primary-600 hover:text-accent-gold transition-colors"
+                    className="p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-primary-600 hover:text-accent-gold transition-colors"
                     aria-label="Close menu"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-6 h-6" />
                   </button>
                 </div>
 
@@ -179,13 +187,13 @@ export default function Navbar() {
                       key={link.name}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.05 }}
                     >
                       {link.children ? (
                         <div>
                           <button
                             onClick={() => handleDropdownToggle(link.name)}
-                            className={`w-full flex items-center justify-between px-6 py-3 text-left transition-colors duration-200 ${
+                            className={`w-full flex items-center justify-between px-6 py-3.5 text-left transition-colors duration-200 min-h-[48px] ${
                               pathname === link.href
                                 ? 'text-accent-gold bg-accent-cream'
                                 : 'text-primary-600 hover:text-accent-gold hover:bg-primary-50'
@@ -211,7 +219,7 @@ export default function Navbar() {
                                   <Link
                                     key={child.name}
                                     href={child.href}
-                                    className={`block pl-10 pr-6 py-2 text-sm transition-colors duration-200 ${
+                                    className={`block pl-10 pr-6 py-3 text-sm transition-colors duration-200 min-h-[44px] flex items-center ${
                                       pathname === child.href
                                         ? 'text-accent-gold bg-accent-cream'
                                         : 'text-primary-500 hover:text-accent-gold hover:bg-primary-100'
@@ -227,7 +235,7 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={link.href}
-                          className={`block px-6 py-3 font-medium transition-colors duration-200 ${
+                          className={`block px-6 py-3.5 font-medium transition-colors duration-200 min-h-[48px] flex items-center ${
                             pathname === link.href
                               ? 'text-accent-gold bg-accent-cream'
                               : 'text-primary-600 hover:text-accent-gold hover:bg-primary-50'
@@ -241,15 +249,18 @@ export default function Navbar() {
                 </nav>
 
                 {/* Menu Footer */}
-                <div className="p-6 border-t border-primary-100">
+                <div className="p-4 border-t border-primary-100 space-y-3">
                   <a
                     href={`tel:${SITE_CONFIG.phone}`}
-                    className="flex items-center justify-center gap-2 text-primary-600 hover:text-accent-gold transition-colors duration-200 mb-4"
+                    className="flex items-center justify-center gap-2 text-primary-600 hover:text-accent-gold transition-colors duration-200 py-3 min-h-[48px]"
                   >
                     <Phone className="w-4 h-4" />
                     <span className="text-sm font-medium">{SITE_CONFIG.phone}</span>
                   </a>
-                  <Link href="/contact" className="btn-primary w-full text-center block">
+                  <Link
+                    href="/contact"
+                    className="btn-primary w-full text-center block py-3 min-h-[48px] flex items-center justify-center"
+                  >
                     Get Quote
                   </Link>
                 </div>

@@ -11,26 +11,26 @@ import { SERVICES } from '@/lib/constants'
 
 export default function ServicesShowcase() {
   return (
-    <SectionWrapper bg="white" className="py-20 md:py-28">
+    <SectionWrapper bg="white" className="py-12 sm:py-16 md:py-20 lg:py-28">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 sm:mb-12 md:mb-16">
         <AnimatedText
           as="p"
-          className="text-accent-gold font-medium tracking-widest uppercase mb-4"
+          className="text-accent-gold font-medium tracking-widest uppercase mb-3 sm:mb-4 text-xs sm:text-sm"
         >
           What We Offer
         </AnimatedText>
         <AnimatedText
           as="h2"
           delay={0.2}
-          className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800 mb-3 sm:mb-4"
         >
           Our Premium Services
         </AnimatedText>
         <AnimatedText
           as="p"
           delay={0.4}
-          className="text-primary-600 max-w-2xl mx-auto"
+          className="text-sm sm:text-base text-primary-600 max-w-2xl mx-auto px-4 sm:px-0"
         >
           From mosquito doors to automated shutters, we provide comprehensive
           aluminium and glass solutions for your home and business.
@@ -39,7 +39,7 @@ export default function ServicesShowcase() {
 
       {/* Services Grid */}
       <StaggerChildren
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         stagger={0.1}
       >
         {SERVICES.map((service) => (
@@ -48,7 +48,7 @@ export default function ServicesShowcase() {
             href={`/services/${service.id}`}
             className="group block"
           >
-            <div className="bg-white rounded-2xl overflow-hidden border border-primary-100 hover:border-accent-gold/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+            <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-primary-100 hover:border-accent-gold/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
               {/* Image */}
               <div className="aspect-[16/10] relative overflow-hidden">
                 <ImagePlaceholder
@@ -56,7 +56,7 @@ export default function ServicesShowcase() {
                   className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Price Badge */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/95 backdrop-blur-sm rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2 shadow-lg">
                   <PriceTag
                     price={service.startingPrice}
                     label="Starting from"
@@ -65,42 +65,38 @@ export default function ServicesShowcase() {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-serif text-primary-800 mb-2 group-hover:text-accent-gold transition-colors duration-300">
+              <div className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
+                <h3 className="text-lg sm:text-xl font-serif text-primary-800 mb-2 group-hover:text-accent-gold transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-primary-600 text-sm mb-4 flex-1 line-clamp-2">
+                <p className="text-primary-600 text-xs sm:text-sm mb-3 sm:mb-4 flex-1 line-clamp-2">
                   {service.shortDescription}
                 </p>
 
                 {/* Features Preview */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {Array.isArray(service.features)
-                    ? service.features.slice(0, 3).map((feature, i) => (
-                        <span
-                          key={i}
-                          className="text-xs bg-primary-50 text-primary-600 px-2 py-1 rounded"
-                        >
-                          {feature}
-                        </span>
-                      ))
-                    : Object.values(service.features)
-                        .flat()
-                        .slice(0, 3)
-                        .map((feature, i) => (
-                          <span
-                            key={i}
-                            className="text-xs bg-primary-50 text-primary-600 px-2 py-1 rounded"
-                          >
-                            {feature}
-                          </span>
-                        ))}
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+                  {(() => {
+                    const features = Array.isArray(service.features)
+                      ? service.features
+                      : [
+                          ...((service.features as any)?.aluminium || []),
+                          ...((service.features as any)?.glass || []),
+                        ]
+                    return features.slice(0, 3).map((feature: string, i: number) => (
+                      <span
+                        key={i}
+                        className="text-[10px] sm:text-xs bg-primary-50 text-primary-600 px-2 py-1 rounded"
+                      >
+                        {feature}
+                      </span>
+                    ))
+                  })()}
                 </div>
 
                 {/* CTA */}
-                <div className="flex items-center text-accent-gold font-medium text-sm group-hover:gap-2 transition-all duration-300">
+                <div className="flex items-center text-accent-gold font-medium text-xs sm:text-sm group-hover:gap-2 transition-all duration-300">
                   <span>View Details</span>
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:ml-2 transition-all duration-300" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 group-hover:ml-2 transition-all duration-300" />
                 </div>
               </div>
             </div>
@@ -109,10 +105,10 @@ export default function ServicesShowcase() {
       </StaggerChildren>
 
       {/* View All CTA */}
-      <div className="text-center mt-12">
+      <div className="text-center mt-8 sm:mt-10 md:mt-12">
         <Link
           href="/services"
-          className="inline-flex items-center gap-2 text-accent-gold hover:text-accent-darkGold font-medium transition-colors group"
+          className="inline-flex items-center gap-2 text-accent-gold hover:text-accent-darkGold font-medium text-sm sm:text-base transition-colors group"
         >
           <span>View All Services</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

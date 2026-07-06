@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Instagram, Facebook, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react'
-import { SITE_CONFIG, NAV_LINKS, SERVICES } from '@/lib/constants'
+import { SITE_CONFIG, SERVICES } from '@/lib/constants'
 
 const footerLinks = [
   {
@@ -30,11 +30,11 @@ export default function Footer() {
     <footer className="bg-primary-900 text-white">
       {/* Main Footer */}
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block mb-4">
-              <span className="text-2xl font-serif font-semibold text-white">
+              <span className="text-xl md:text-2xl font-serif font-semibold text-white">
                 A.S Interiors
               </span>
             </Link>
@@ -67,12 +67,12 @@ export default function Footer() {
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h3 className="text-white font-semibold mb-4">{section.title}</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-primary-300 hover:text-accent-gold transition-colors duration-200 text-sm flex items-center gap-1 group"
+                      className="text-primary-300 hover:text-accent-gold transition-colors duration-200 text-sm flex items-center gap-1 group py-1"
                     >
                       {link.name}
                       <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
@@ -84,13 +84,13 @@ export default function Footer() {
           ))}
 
           {/* Contact Info */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="text-white font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               <li>
                 <a
                   href={`tel:${SITE_CONFIG.phone}`}
-                  className="flex items-start gap-3 text-primary-300 hover:text-accent-gold transition-colors duration-200"
+                  className="flex items-start gap-3 text-primary-300 hover:text-accent-gold transition-colors duration-200 py-1"
                 >
                   <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
                   <div>
@@ -102,13 +102,13 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="flex items-start gap-3 text-primary-300 hover:text-accent-gold transition-colors duration-200"
+                  className="flex items-start gap-3 text-primary-300 hover:text-accent-gold transition-colors duration-200 py-1"
                 >
                   <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm">{SITE_CONFIG.email}</p>
+                  <p className="text-sm break-all">{SITE_CONFIG.email}</p>
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-primary-300">
+              <li className="flex items-start gap-3 text-primary-300 py-1">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <p className="text-sm">
                   {SITE_CONFIG.address.street}
@@ -125,7 +125,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-primary-800">
         <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <p className="text-primary-400 text-sm">
               &copy; {currentYear} {SITE_CONFIG.name}. All rights reserved.
             </p>

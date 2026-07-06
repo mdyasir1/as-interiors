@@ -27,7 +27,6 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
     let animationFrame: number
 
     const duration = 2000
-    const increment = target / (duration / 16)
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime
@@ -51,18 +50,18 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
   }, [isInView, target])
 
   return (
-    <div ref={ref}>
-      <span className="text-4xl md:text-5xl font-serif text-accent-gold font-semibold">
+    <div ref={ref} className="mb-2">
+      <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent-gold tabular-nums" style={{ fontVariantNumeric: 'tabular-nums' }}>
         {count}
-        {suffix}
       </span>
+      <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-accent-gold">{suffix}</span>
     </div>
   )
 }
 
 export default function Stats() {
   return (
-    <SectionWrapper bg="white" className="py-16 relative overflow-hidden">
+    <SectionWrapper bg="white" className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -77,24 +76,24 @@ export default function Stats() {
       <div className="relative z-10">
         <AnimatedText
           as="h2"
-          className="text-center text-3xl md:text-4xl font-serif text-primary-800 mb-12"
+          className="text-center text-2xl sm:text-3xl md:text-4xl font-serif text-primary-800 mb-10 sm:mb-12 md:mb-16"
         >
           Our Track Record Speaks
         </AnimatedText>
 
         <StaggerChildren
-          className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-12"
           stagger={0.15}
         >
           {STATS.map((stat) => {
             const Icon = iconMap[stat.label as keyof typeof iconMap] || Award
             return (
               <div key={stat.label} className="text-center group">
-                <div className="w-14 h-14 rounded-xl bg-accent-gold/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
-                  <Icon className="w-7 h-7 text-accent-gold" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-accent-gold/10 flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 group-hover:bg-accent-gold/20 transition-colors duration-300">
+                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-accent-gold" />
                 </div>
                 <CountUp target={stat.value} suffix={stat.suffix} />
-                <p className="text-primary-600 mt-2 text-sm md:text-base">{stat.label}</p>
+                <p className="text-primary-600 mt-1 sm:mt-2 text-xs sm:text-sm md:text-base font-medium">{stat.label}</p>
               </div>
             )
           })}

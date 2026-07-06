@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -30,23 +30,23 @@ export default function WhatsAppButton() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-20 right-0 w-72 bg-white rounded-xl shadow-2xl overflow-hidden"
+            className="absolute bottom-16 sm:bottom-20 right-0 w-[calc(100vw-32px)] max-w-[300px] bg-white rounded-xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-[#25D366] p-4">
+            <div className="bg-[#25D366] p-3 sm:p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                     <MessageCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold">A.S Interiors</p>
+                    <p className="text-white font-semibold text-sm">A.S Interiors</p>
                     <p className="text-white/80 text-xs">Typically replies instantly</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 hover:text-white transition-colors p-1"
                   aria-label="Close chat"
                 >
                   <X className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function WhatsAppButton() {
             </div>
 
             {/* Message */}
-            <div className="p-4 bg-[#ECE5DD]">
+            <div className="p-3 sm:p-4 bg-[#ECE5DD]">
               <div className="bg-white rounded-lg p-3 shadow-sm">
                 <p className="text-sm text-gray-800">
                   Hello! 👋 How can we help you today?
@@ -65,12 +65,12 @@ export default function WhatsAppButton() {
             </div>
 
             {/* Action */}
-            <div className="p-4">
+            <div className="p-3 sm:p-4">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-center py-3 rounded-lg font-medium transition-colors duration-200"
+                className="block w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-center py-3 rounded-lg font-medium transition-colors duration-200 min-h-[48px] flex items-center justify-center"
               >
                 Start Chat
               </a>
@@ -85,7 +85,7 @@ export default function WhatsAppButton() {
         animate={{ scale: 1 }}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
+        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
           isOpen
             ? 'bg-gray-500 hover:bg-gray-600'
             : 'bg-[#25D366] hover:bg-[#128C7E] animate-pulse-glow'
@@ -93,9 +93,9 @@ export default function WhatsAppButton() {
         aria-label={isOpen ? 'Close WhatsApp' : 'Open WhatsApp'}
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         ) : (
-          <MessageCircle className="w-6 h-6 text-white" />
+          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         )}
       </motion.button>
     </div>
