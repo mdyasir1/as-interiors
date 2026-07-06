@@ -25,10 +25,11 @@ const config: Config = {
           gold: '#C9A962',
           darkGold: '#A68B4B',
           lightGold: '#E8D5A3',
+          cream: '#F5F0E8',
         },
         background: {
           light: '#FAFAFA',
-          dark: '#0A0A0A',
+          dark: '#0D0D0D',
           card: '#FFFFFF',
         },
       },
@@ -40,8 +41,11 @@ const config: Config = {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'slide-up': 'slideUp 0.6s ease-out forwards',
         'slide-in-left': 'slideInLeft 0.6s ease-out forwards',
+        'slide-in-right': 'slideInRight 0.4s ease-out forwards',
         'scale-in': 'scaleIn 0.5s ease-out forwards',
         'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        'underline-grow': 'underlineGrow 0.3s ease-out forwards',
       },
       keyframes: {
         fadeIn: {
@@ -56,6 +60,10 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(-50px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        slideInRight: {
+          '0%': { opacity: '0', transform: 'translateX(100%)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
         scaleIn: {
           '0%': { opacity: '0', transform: 'scale(0.9)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
@@ -64,6 +72,18 @@ const config: Config = {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.7' },
         },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(201, 169, 98, 0.4)' },
+          '50%': { boxShadow: '0 0 0 10px rgba(201, 169, 98, 0)' },
+        },
+        underlineGrow: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
+      },
+      transitionDuration: {
+        '250': '250ms',
+        '350': '350ms',
       },
     },
   },

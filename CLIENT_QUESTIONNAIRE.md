@@ -6,31 +6,35 @@
 
 ```
 1. Full Company Name: 
-   A.S Interiors (or any other spelling?)
+   A.S Interiors (or any other spelling?) 
+   A.S interiors only
 
 2. Tagline/Slogan (if any):
    Example: "Your Home, Our Design"
+one door step for all aluminum & glass works (thinking like this need to make good sentence formation)
 
 3. Year of Establishment:
    When did you start the business?
+   7-8 yrs exp  
 
 4. Location/Address:
    Full address with city
+   Lakshmi tulasi complex, 9th road, PNT Colony, Ambapuram, Vijayawada, Andhra Pradesh 520015
 
 5. Working Hours:
-   Monday-Saturday: 9AM - 7PM?
+   Monday-Saturday: 9AM - 8PM?
+   yes
 
 6. Phone Number(s):
-   - Primary:
-   - WhatsApp:
+   - Primary: 7995944686
+   - secondary: 7095866278
+   - WhatsApp: 7995944686
 
-7. Email Address:
+7. Email Address: bzasaad786@gmail.com
 
 8. Social Media Links:
-   - Instagram:
-   - Facebook:
-   - YouTube:
-   - Other:
+   - Instagram:  a.s_interior__works (present)
+   - Facebook: a.s_interior__works
 ```
 
 ---
@@ -39,19 +43,21 @@
 
 ```
 1. Do you have an existing logo?
-   □ Yes (please share vector/PNG file)
+   □ Yes (please share vector/PNG file)   (pdf) yes but it is in pdf need to do some changes by designer
    □ No (I can design one)
 
 2. Brand Colors (if any):
-   - Primary Color:
-   - Secondary Color:
+   - Primary Color: rgba(254, 204, 102)  HEX: #fecc66 
+   - Secondary Color: rgba(254, 234, 185) HEX: #feeab9
+   apart from these 2 colors we need to use some suitable colors which feels premium (logo colors are in those 2 colors)
    
 3. Color Preferences:
    □ Modern & Minimal (White, Black, Gold)
    □ Professional (Blue, Grey, White)
    □ Premium (Black, Gold, Maroon)
    □ Nature-inspired (Green, Brown, Cream)
-   □ Let the designer decide
+   □ Let the designer decide 
+You need to check as senior dev
 
 4. Fonts/Typography Style:
    □ Modern & Clean
@@ -59,6 +65,7 @@
    □ Bold & Industrial
    □ Let the designer decide
 ```
+You need to use Premium fonts
 
 ---
 
@@ -67,25 +74,36 @@
 ```
 Please describe each service in 2-3 lines:
 
-1. MOSQUITO DOORS:
-   - Types available:
-   - Starting price range:
-   - Key features:
+1. aluminim MOSQUITO DOORS & windows:
+   - door Types available: aluminum open mosquito doors,  open grill mosquito doors, sliding mosquito doors, metal security mosquit doors, fibre magnetic mosquito curtain, etc... 
+   - window types:  pvc mosquito  mats, 1 inch window mosquito door, sleek panel mosquito frames 
+   - Starting price range: 1499 
+   - Key features: lock system, waterproof, rustproof, termiteproof, heavy quality material
 
 2. ALUMINIUM WINDOWS:
-   - Types available:
-   - Starting price range:
-   - Key features:
+   - Types available: sliding windows, domal aluminium sliding windows 
+   - Starting price range: 549 per sft
+   - Key features: lock system, waterproof, rustproof, termiteproof, heavy quality material
+   glass types for the windows: toughend glass, kacha glass (multiple colors & models as per requirement)
 
 3. AUTOMATED SHUTTERS:
-   - Types available:
-   - Starting price range:
-   - Key features:
+   - Types available: (one model for now)
+   - Starting price range: 699 per sft, motor price (18,999)excluded+gst excluded
+   - Key features:  (features sent in the image)
 
-4. MOSQUITO PROTECTION:
-   - Types available:
-   - Starting price range:
-   - Key features:
+4. ALUMINIUM CUPBOARDS: 
+   - Types available: indian profile cupboards, imported profile cupboards, acp sheet cupboards with mulyiple colors
+   - models: open or sliding doors
+   - Starting price range: 649 persft
+   - Key features: waterproof, rustproof, termiteproof, fireproof,  heavy quality material, zero maintenece
+
+5. PARTITIONS:
+   - Types: Aluminium, glass
+   - aluminum partions , alumnium cabins, toughend glass partitions,  front glass door (main door in entrance), laminated glass works, sandwich vacccum glass works, 
+   - starting price: 349 per sft
+   - aluminuym cabin features: 50% sound proof, termite proof, easy maintenence 
+   - features for laminate glass & sandwich vaccum : fireproof, bulletproof,  (if broke won't fell on it will still stand), soundproof
+
 
 5. Any other services not listed?
 ```
@@ -98,12 +116,14 @@ Please describe each service in 2-3 lines:
 Please provide:
 
 1. ABOUT US SECTION:
-   - Company story (how it started)
-   - Mission statement
-   - Years of experience
-   - Number of projects completed
-   - Team size
-   - Any awards/certifications?
+   - Company story (how it started): started working in another place learned all work found some quality compromise issues so created our own place after 3 years and started our work with no quality compromise in less budget. now we have our own workshop for manufacturing and our own office....
+   - Mission statement: High quality work in low price with ontime
+   - Years of experience: 7-8 yrs exp
+   - Number of projects completed : 500+
+   - Team size  (not now)
+   - Any awards/certifications? (not now)
+
+WE TAKE ALL OVER ANDHRA PRADESH FOR WORKS -- (need to check where it suits)
 
 2. IMAGES NEEDED:
    □ 10-15 high-quality project photos
@@ -114,17 +134,22 @@ Please provide:
    
    (Minimum 1920x1080 resolution preferred)
 
+Images will be added later
+
 3. TESTIMONIALS:
    - Do you have customer reviews?
    - Can you share 5-6 testimonials with names?
    - Any video testimonials?
 
+   will see later
+
 4. PROCESS/HOW IT WORKS:
    - Step 1: Consultation
-   - Step 2: Design
-   - Step 3: Installation
-   - Step 4: Support
-   (Is this accurate? Please correct)
+   - Step 2: Select Design
+   - Step 3: Measurments
+   - Step 4: Installation
+   - Step 5: Support
+   (Is this accurate? Please correct) YES
 ```
 
 ---
@@ -144,28 +169,28 @@ Please provide:
    □ Other:
 
 2. CONTACT FORM:
-   □ Yes - collect: Name, Phone, Email, Service Interest, Message
+   □ Yes - collect: Name, Phone, Email, Service Interest, Message  (contact form) yes with gmail app pasword api route 
    □ No - just show contact details
 
 3. WHATSAPP BUTTON:
-   □ Yes (floating button on all pages)
+   □ Yes (floating button on all pages) (yes)
    □ No
 
 4. GOOGLE MAPS:
-   □ Yes - show office location
+   □ Yes - show office location (yes)
    □ No
 
 5. ONLINE QUOTE REQUEST:
    □ Yes - detailed form for getting quotes
-   □ No
+   □ No  No
 
 6. MULTILINGUAL:
-   □ English only
+   □ English only english only
    □ English + Hindi (or other local language)
 
 7. ANIMATIONS:
    □ Basic (smooth transitions)
-   □ Advanced (3D effects, scroll animations)
+   □ Advanced (3D effects, scroll animations)  Advanced
    □ Let the designer decide
 ```
 
@@ -175,11 +200,11 @@ Please provide:
 
 ```
 1. TARGET CITY/AREA:
-   Which city/area do you serve?
+   Which city/area do you serve? Andhra pradesh all cities
    Example: "Mumbai, Navi Mumbai, Thane"
 
 2. GOOGLE MY BUSINESS:
-   □ Yes - [paste link]
+   □ Yes - [paste link]  yes-  https://local.google.com/place?placeid=ChIJr3VLTxvlNToRq6IoP0wZjNg&utm_medium=noren&utm_source=gbp&utm_campaign=2026
    □ No - need help setting up
 
 3. KEYWORDS TO RANK FOR:
@@ -197,7 +222,7 @@ Please provide:
 
 5. REFERENCE WEBSITES:
    Share 2-3 websites you like the design of:
-   1.
+   1. gsap ui 3d animations like scroll
    2.
    3.
 ```
@@ -209,8 +234,8 @@ Please provide:
 ```
 1. DOMAIN NAME:
    Have you purchased a domain?
-   □ Yes - Domain: ________________
-   □ No - need help buying
+   □ Yes - Domain: ________________ 
+   □ No - need help buying LATER: asinteriors.co.in
 
 2. DOMAIN REGISTRAR:
    Where did you buy it?

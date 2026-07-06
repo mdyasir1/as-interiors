@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { inter, playfair } from '@/lib/fonts'
 import { SITE_CONFIG } from '@/lib/constants'
+import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -14,8 +18,12 @@ export const metadata: Metadata = {
     'aluminium windows',
     'automated shutters',
     'mosquito protection',
+    'aluminium cupboards',
+    'partitions',
     'interior design',
     'home interior',
+    'Vijayawada',
+    'Andhra Pradesh',
   ],
   authors: [{ name: SITE_CONFIG.name }],
   creator: SITE_CONFIG.name,
@@ -45,7 +53,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <SmoothScrollProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <WhatsAppButton />
+        </SmoothScrollProvider>
+      </body>
     </html>
   )
 }

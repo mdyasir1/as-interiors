@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 :root {
+  --color-gold: #C9A962;
+  --color-dark-gold: #A68B4B;
+  --color-light-gold: #E8D5A3;
+  --color-cream: #F5F0E8;
+  --color-dark: #0D0D0D;
+  --color-light: #FAFAFA;
   --foreground-rgb: 26, 26, 26;
   --background-rgb: 250, 250, 250;
 }
@@ -23,9 +29,10 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Smooth scrolling for Lenis */
+/* Lenis Smooth Scroll */
 html.lenis {
   height: auto;
 }
@@ -42,38 +49,117 @@ html.lenis {
   overflow: hidden;
 }
 
-/* Selection styling */
+/* Selection styling - Gold highlight */
 ::selection {
-  background-color: #C9A962;
+  background-color: var(--color-gold);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: var(--color-gold);
   color: #ffffff;
 }
 
 /* Focus styling for accessibility */
 *:focus-visible {
-  outline: 2px solid #C9A962;
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Premium gold accent */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C9A962;
+  background: var(--color-gold);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A68B4B;
+  background: var(--color-dark-gold);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) #f1f1f1;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* Prevent layout shift */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .nav-link {
+    @apply relative text-primary-600 hover:text-accent-gold transition-colors duration-300;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-accent-gold transform scale-x-0 transition-transform duration-300 origin-left;
+  }
+  
+  .nav-link:hover::after {
+    @apply scale-x-100;
+  }
+  
+  .btn-primary {
+    @apply bg-accent-gold text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-accent-darkGold hover:shadow-lg hover:shadow-accent-gold/20 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-accent-gold text-accent-gold px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-accent-gold hover:text-white active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply text-primary-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-primary-100 active:scale-95;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .heading-primary {
+    @apply text-3xl md:text-4xl lg:text-5xl font-serif text-primary-800;
+  }
+  
+  .heading-secondary {
+    @apply text-2xl md:text-3xl font-serif text-primary-800;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-gold to-accent-lightGold bg-clip-text text-transparent;
   }
 }
