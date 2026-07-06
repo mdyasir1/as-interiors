@@ -9,8 +9,8 @@
 | Phase | Status | Notes |
 |-------|--------|-------|
 | Phase 1: Project Setup | ✅ Complete | Next.js 14, TS, Tailwind, all deps installed |
-| Phase 2: Global Layout | 🔄 Next | Navbar, footer, global styles |
-| Phase 3: Reusable Components | ⏳ Pending | - |
+| Phase 2: Global Layout | ✅ Complete | Navbar, Footer, SmoothScroll, WhatsApp, SectionWrapper |
+| Phase 3: Reusable Components | 🔄 Next | UI components library |
 | Phase 4: Home Page | ⏳ Pending | - |
 | Phase 5: Inner Pages | ⏳ Pending | - |
 | Phase 6: Animations | ⏳ Pending | - |
@@ -221,14 +221,6 @@ export const scaleIn = {
 - [x] Git initialized and first commit made
 - [x] Build verified - ZERO errors
 
-#### Decisions Made:
-1. Using Next.js App Router (not Pages Router)
-2. TypeScript strict mode for error prevention
-3. Modular component structure (ui/sections/animations/3d)
-4. Placeholder content until client provides real data
-5. Premium black/gold/white color scheme
-6. Manually set up project (create-next-app had folder conflicts)
-
 #### Issues/Blockers:
 - ESLint version conflict (v10 incompatible with next config) - Fixed by downgrading to ESLint 8.57.0
 - create-next-app failed due to existing files - Fixed by manual setup
@@ -240,19 +232,52 @@ de0b6cf - Phase 1: Project setup - Next.js 14, TypeScript, Tailwind, dependencie
 
 ---
 
+### Phase 2: Global Layout & Theme (Current Session)
+
+#### Completed:
+- [x] Updated tailwind.config.ts with Classic Dark Premium palette
+- [x] Updated globals.css with smooth scroll, custom properties, utility classes
+- [x] Created SmoothScrollProvider.tsx with Lenis for buttery scrolling
+- [x] Created Navbar.tsx - responsive with dropdown, mobile menu, scroll-aware
+- [x] Created Footer.tsx - with links, social, contact info
+- [x] Created WhatsAppButton.tsx - floating button with chat popup
+- [x] Created SectionWrapper.tsx - consistent section styling
+- [x] Updated layout.tsx with all providers and components
+- [x] Updated constants.ts with actual client data from questionnaire
+- [x] Updated page.tsx with proper home page structure
+- [x] Build verified - ZERO errors
+- [x] Lint verified - ZERO warnings
+
+#### Decisions Made:
+1. Classic Dark Premium color palette (#0D0D0D dark, #C9A962 gold accent)
+2. Lenis for smooth scrolling (smoothWheel: true)
+3. Framer Motion for all animations
+4. WhatsApp button with chat popup UI
+5. Responsive navbar with mobile slide-in menu
+
+#### Issues/Blockers:
+- Lenis type errors (v1.1 API different from docs) - Fixed by using correct options (smoothWheel, syncTouch)
+
+#### Git Commit:
+```
+1b4fa13 - Phase 2: Global Layout & Theme - Navbar, Footer, SmoothScroll, WhatsApp, SectionWrapper
+```
+
+---
+
 ## Placeholder Content
 
 All placeholder content is marked with `// TODO: Replace with actual content`
 
-| Element | Current Placeholder |
-|---------|---------------------|
-| Company Name | A.S Interiors |
-| Tagline | "Crafting Perfect Spaces" |
-| Services | Generic descriptions |
-| Images | Unsplash URLs (will be replaced) |
-| Testimonials | Sample reviews |
-| Contact | Dummy address/phone |
-| Colors | Black/Gold/White premium palette |
+| Element | Current Status |
+|---------|----------------|
+| Company Name | ✅ A.S Interiors (from client) |
+| Tagline | ✅ "Your One-Stop Solution for Aluminium & Glass Works" |
+| Services | ✅ 5 services with details (from client) |
+| Images | ⏳ Placeholder divs (client will provide) |
+| Testimonials | ⏳ Sample reviews (client will provide) |
+| Contact | ✅ Real phone, email, address (from client) |
+| Colors | ✅ Classic Dark Premium palette |
 
 ---
 
@@ -286,4 +311,4 @@ git push
 
 ---
 
-*Last updated: Phase 1 Complete - Ready for Phase 2*
+*Last updated: Phase 2 Complete - Ready for Phase 3 (Reusable Components)*
