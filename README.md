@@ -276,7 +276,7 @@ Before starting, collect from client:
 - [x] Home page built
 - [x] Mobile responsiveness done
 - [x] Desktop grid fixes done
-- [ ] Inner pages built
+- [x] Inner pages built
 - [ ] Animations added
 - [ ] SEO optimized
 - [ ] Deployed to Vercel
