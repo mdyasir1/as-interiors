@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { motion, Variants } from 'framer-motion'
+import { useReducedMotion } from '@/hooks/useMediaQuery'
 
 type AnimatedTextVariant = 'words' | 'characters' | 'lines'
 type TextElement = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span'
@@ -20,7 +21,7 @@ const containerVariants: Variants = {
   hidden: {},
   visible: (delay: number) => ({
     transition: {
-      staggerChildren: 0.05,
+      staggerChildren: 0.04,
       delayChildren: delay,
     },
   }),
@@ -29,15 +30,13 @@ const containerVariants: Variants = {
 const wordVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 10,
-    filter: 'blur(4px)',
+    y: 8,
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: {
-      duration: 0.4,
+      duration: 0.3,
       ease: [0.25, 0.1, 0.25, 1],
     },
   },
@@ -48,11 +47,17 @@ export default function AnimatedText({
   as: Component = 'p',
   variant = 'words',
   delay = 0,
-  duration = 0.5,
+  duration = 0.4,
   className = '',
   once = true,
 }: AnimatedTextProps) {
+  const prefersReducedMotion = useReducedMotion()
+
   if (typeof children !== 'string') {
+    return <Component className={className}>{children}</Component>
+  }
+
+  if (prefersReducedMotion) {
     return <Component className={className}>{children}</Component>
   }
 
@@ -62,7 +67,7 @@ export default function AnimatedText({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: '-50px' }}
+      viewport={{ once, margin: '-30px' }}
       variants={containerVariants}
       custom={delay}
       aria-label={children}

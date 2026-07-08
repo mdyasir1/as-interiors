@@ -5,6 +5,7 @@ import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import ScrollProgress from '@/components/ui/ScrollProgress'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -55,6 +56,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased">
         <SmoothScrollProvider>
+          <ScrollProgress />
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />

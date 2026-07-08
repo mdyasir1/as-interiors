@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { motion, Variants } from 'framer-motion'
+import { useReducedMotion } from '@/hooks/useMediaQuery'
 
 type FadeDirection = 'up' | 'down' | 'left' | 'right' | 'none'
 
@@ -15,21 +16,23 @@ interface FadeInProps {
 }
 
 const directionVariants: Record<FadeDirection, { x?: number; y?: number }> = {
-  up: { y: 30 },
-  down: { y: -30 },
-  left: { x: 30 },
-  right: { x: -30 },
+  up: { y: 20 },
+  down: { y: -20 },
+  left: { x: 20 },
+  right: { x: -20 },
   none: {},
 }
 
 export default function FadeIn({
   children,
   delay = 0,
-  duration = 0.5,
+  duration = 0.4,
   direction = 'up',
   className = '',
   once = true,
 }: FadeInProps) {
+  const prefersReducedMotion = useReducedMotion()
+
   const variants: Variants = {
     hidden: {
       opacity: 0,
@@ -42,11 +45,15 @@ export default function FadeIn({
     },
   }
 
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>
+  }
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: '-50px' }}
+      viewport={{ once, margin: '-30px' }}
       variants={variants}
       transition={{
         duration,

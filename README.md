@@ -14,7 +14,8 @@ A.S Interiors provides:
 - **Mosquito Doors** - Various types of mosquito protection doors
 - **Aluminium Windows** - Modern aluminium window solutions
 - **Automated Shutters** - Smart home interior shutters that open/close with a button
-- **Mosquito Protection** - Complete mosquito protection solutions
+- **Aluminium Cupboards** - Indian & imported profile cupboards
+- **Partitions** - Aluminium and glass partitions for spaces
 
 ---
 
@@ -60,7 +61,7 @@ When user scrolls down:
 
 - Home
 - About Us
-- Services (Mosquito Doors, Aluminium Windows, Automated Shutters, Mosquito Protection)
+- Services (Mosquito Doors, Aluminium Windows, Automated Shutters, Aluminium Cupboards, Partitions)
 - Portfolio/Gallery
 - Testimonials
 - Contact Us
@@ -269,10 +270,12 @@ Before starting, collect from client:
 
 ## Project Status
 
-- [ ] Project setup
-- [ ] Client questionnaire sent
-- [ ] Client details received
-- [ ] Home page built
+- [x] Project setup
+- [x] Client questionnaire sent
+- [x] Client details received
+- [x] Home page built
+- [x] Mobile responsiveness done
+- [x] Desktop grid fixes done
 - [ ] Inner pages built
 - [ ] Animations added
 - [ ] SEO optimized

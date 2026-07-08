@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { motion, Variants } from 'framer-motion'
+import { useReducedMotion } from '@/hooks/useMediaQuery'
 
 interface SlideUpProps {
   children: ReactNode
@@ -15,11 +16,13 @@ interface SlideUpProps {
 export default function SlideUp({
   children,
   delay = 0,
-  duration = 0.6,
-  distance = 40,
+  duration = 0.4,
+  distance = 20,
   className = '',
   once = true,
 }: SlideUpProps) {
+  const prefersReducedMotion = useReducedMotion()
+
   const variants: Variants = {
     hidden: {
       opacity: 0,
@@ -31,11 +34,15 @@ export default function SlideUp({
     },
   }
 
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>
+  }
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: '-80px' }}
+      viewport={{ once, margin: '-30px' }}
       variants={variants}
       transition={{
         duration,
