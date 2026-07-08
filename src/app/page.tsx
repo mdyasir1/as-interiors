@@ -2,7 +2,7 @@ import Hero from '@/components/sections/Hero'
 import Stats from '@/components/sections/Stats'
 import AboutPreview from '@/components/sections/AboutPreview'
 import ServicesShowcase from '@/components/sections/ServicesShowcase'
-import WhyChooseUs from '@/components/sections/WhyChooseUs'
+import HorizontalShowcase from '@/components/sections/HorizontalShowcase'
 import Process from '@/components/sections/Process'
 import Testimonials from '@/components/sections/Testimonials'
 import ServiceAreas from '@/components/sections/ServiceAreas'
@@ -15,7 +15,7 @@ export default function Home() {
       <Stats />
       <AboutPreview />
       <ServicesShowcase />
-      <WhyChooseUs />
+      <HorizontalShowcase />
       <Process />
       <Testimonials />
       <ServiceAreas />
