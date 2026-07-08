@@ -1,33 +1,23 @@
 'use client'
 
+import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
-import { useRef } from 'react'
-import AnimatedText from '@/components/animations/AnimatedText'
-import FadeIn from '@/components/animations/FadeIn'
 import Button from '@/components/ui/Button'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const [isMounted, setIsMounted] = useState(false)
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center bg-primary-900 overflow-hidden"
-    >
-      {/* Animated Background */}
-      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+    <section className="relative min-h-screen flex items-center justify-center bg-primary-900 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900" />
 
         {/* Floating Elements */}
@@ -65,52 +55,71 @@ export default function Hero() {
             backgroundSize: '60px 60px',
           }}
         />
-      </motion.div>
+      </div>
 
-      {/* Content */}
-      <motion.div
-        className="container-custom mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 md:pt-20"
-        style={{ y: textY, opacity }}
-      >
+      {/* Content - NO scroll-based opacity, just mount-based animations */}
+      <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 md:pt-20">
         <div className="text-center max-w-5xl mx-auto">
           {/* Badge */}
-          <FadeIn delay={0.2}>
-            <div className="inline-flex items-center gap-2 bg-accent-gold/10 border border-accent-gold/20 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 mb-6 sm:mb-8 backdrop-blur-sm">
+          {isMounted && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 bg-accent-gold/10 border border-accent-gold/20 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 mb-6 sm:mb-8 backdrop-blur-sm"
+            >
               <span className="w-2 h-2 rounded-full bg-accent-gold animate-pulse" />
               <span className="text-accent-gold text-xs sm:text-sm font-medium">
                 {SITE_CONFIG.experience} of Excellence
               </span>
-            </div>
-          </FadeIn>
+            </motion.div>
+          )}
 
-          {/* Main Heading */}
-          <AnimatedText
-            as="h1"
-            delay={0.4}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg"
-          >
-            Your One-Stop Solution for
-          </AnimatedText>
+          {/* Main Heading 1 */}
+          {isMounted && (
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg"
+            >
+              Your One-Stop Solution for
+            </motion.h1>
+          )}
 
-          <AnimatedText
-            as="h1"
-            delay={0.8}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif mb-6 sm:mb-8 leading-tight drop-shadow-lg"
-          >
-            <span className="text-gradient">Aluminium & Glass Works</span>
-          </AnimatedText>
+          {/* Main Heading 2 */}
+          {isMounted && (
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif mb-6 sm:mb-8 leading-tight drop-shadow-lg"
+            >
+              <span className="text-gradient">Aluminium & Glass Works</span>
+            </motion.h1>
+          )}
 
           {/* Subtitle */}
-          <FadeIn delay={1.2} direction="up">
-            <p className="text-base sm:text-lg md:text-xl text-primary-200 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow">
+          {isMounted && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="text-base sm:text-lg md:text-xl text-primary-200 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow"
+            >
               Premium mosquito doors, aluminium windows, automated shutters, cupboards,
               and glass partitions. Serving all of Andhra Pradesh with unmatched quality.
-            </p>
-          </FadeIn>
+            </motion.p>
+          )}
 
           {/* CTA Buttons */}
-          <FadeIn delay={1.4} direction="up">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          {isMounted && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+            >
               <Button
                 href="/contact"
                 variant="primary"
@@ -129,12 +138,17 @@ export default function Hero() {
               >
                 Our Services
               </Button>
-            </div>
-          </FadeIn>
+            </motion.div>
+          )}
 
           {/* Trust Badges */}
-          <FadeIn delay={1.6} direction="up">
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 mt-10 sm:mt-14 text-sm text-primary-300">
+          {isMounted && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+              className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 mt-10 sm:mt-14 text-sm text-primary-300"
+            >
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
                 <span>{SITE_CONFIG.projectsCompleted} Projects</span>
@@ -147,30 +161,31 @@ export default function Hero() {
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
                 <span>Premium Quality</span>
               </div>
-            </div>
-          </FadeIn>
+            </motion.div>
+          )}
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-        style={{ opacity }}
-      >
+      {isMounted && (
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         >
-          <span className="text-xs text-primary-400 tracking-widest uppercase">
-            Scroll Down
-          </span>
-          <ChevronDown className="w-5 h-5 text-accent-gold" />
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex flex-col items-center gap-2"
+          >
+            <span className="text-xs text-primary-400 tracking-widest uppercase">
+              Scroll Down
+            </span>
+            <ChevronDown className="w-5 h-5 text-accent-gold" />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </section>
   )
 }

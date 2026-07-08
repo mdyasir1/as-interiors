@@ -1,14 +1,12 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Wrench, Shield, Clock, Award, Star, Check } from 'lucide-react'
+import { ArrowRight, Shield, Clock, Award, Star } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
-import { SERVICES } from '@/lib/constants'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -47,12 +45,11 @@ const highlights = [
 
 export default function HorizontalShowcase() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const panelRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Horizontal scroll animation
       const panels = cardsRef.current
       if (!panels) return
 
@@ -66,32 +63,13 @@ export default function HorizontalShowcase() {
           start: 'top top',
           end: () => `+=${totalWidth}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            setProgress(self.progress * 100)
+          },
         },
-      })
-
-      // Animate cards as they come into view
-      const cards = panels.querySelectorAll('.showcase-card')
-      cards.forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 50, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: gsap.getById?.('horizontalScroll') || undefined,
-              start: 'left 80%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        )
       })
     })
 
@@ -113,7 +91,7 @@ export default function HorizontalShowcase() {
         />
       </div>
 
-      {/* Header - Fixed */}
+      {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-10 pt-8 sm:pt-12 px-4 sm:px-6 lg:px-8">
         <div className="container-custom mx-auto">
           <div className="flex items-center justify-between">
@@ -149,27 +127,20 @@ export default function HorizontalShowcase() {
           return (
             <div
               key={item.title}
-              className="showcase-card flex-shrink-0 w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px]"
+              className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px]"
             >
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 h-[400px] sm:h-[450px] flex flex-col justify-between hover:bg-white/10 transition-all duration-300 group">
-                {/* Icon */}
                 <div>
                   <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-accent-gold/10 flex items-center justify-center mb-6 group-hover:bg-accent-gold/20 transition-colors">
                     <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-accent-gold" />
                   </div>
-
-                  {/* Title */}
                   <h3 className="text-xl sm:text-2xl font-serif text-white mb-3">
                     {item.title}
                   </h3>
-
-                  {/* Description */}
                   <p className="text-sm sm:text-base text-primary-300 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
-
-                {/* Stat */}
                 <div className="border-t border-white/10 pt-6">
                   <p className="text-3xl sm:text-4xl font-bold text-accent-gold mb-1">
                     {item.stat}
@@ -211,7 +182,10 @@ export default function HorizontalShowcase() {
 
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary-800/50 z-10">
-        <div className="h-full bg-accent-gold w-0" id="horizontalProgress" />
+        <div
+          className="h-full bg-accent-gold transition-none"
+          style={{ width: `${progress}%` }}
+        />
       </div>
     </section>
   )
