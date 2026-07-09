@@ -33,7 +33,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-flex items-center gap-2 mb-4">
+              <img
+                src="/logo.png"
+                alt="A.S Interiors"
+                className="h-8 md:h-10 w-auto"
+                width={40}
+                height={40}
+              />
               <span className="text-xl md:text-2xl font-serif font-semibold text-white">
                 A.S Interiors
               </span>

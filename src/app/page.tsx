@@ -1,15 +1,17 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Hero from '@/components/sections/Hero'
-import Stats from '@/components/sections/Stats'
-import AboutPreview from '@/components/sections/AboutPreview'
-import ServicesShowcase from '@/components/sections/ServicesShowcase'
-import HorizontalShowcase from '@/components/sections/HorizontalShowcase'
-import Process from '@/components/sections/Process'
-import Testimonials from '@/components/sections/Testimonials'
-import ServiceAreas from '@/components/sections/ServiceAreas'
-import CTA from '@/components/sections/CTA'
 import { generateMetadata as getMetadata } from '@/lib/seo'
 import { HOME_SEO } from '@/lib/seo'
+
+const Stats = dynamic(() => import('@/components/sections/Stats'), { ssr: false })
+const AboutPreview = dynamic(() => import('@/components/sections/AboutPreview'), { ssr: false })
+const ServicesShowcase = dynamic(() => import('@/components/sections/ServicesShowcase'), { ssr: false })
+const HorizontalShowcase = dynamic(() => import('@/components/sections/HorizontalShowcase'), { ssr: false })
+const Process = dynamic(() => import('@/components/sections/Process'), { ssr: false })
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), { ssr: false })
+const ServiceAreas = dynamic(() => import('@/components/sections/ServiceAreas'), { ssr: false })
+const CTA = dynamic(() => import('@/components/sections/CTA'), { ssr: false })
 
 export const metadata: Metadata = getMetadata(HOME_SEO)
 

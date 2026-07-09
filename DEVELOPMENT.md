@@ -14,11 +14,11 @@
 | Phase 4: Home Page | ✅ Complete | 9 sections with animations, all issues fixed |
 | Phase 4b: Mobile Responsiveness | ✅ Complete | All components mobile-first, touch targets 44px+ |
 | Phase 4c: Desktop Grid Fixes | ✅ Complete | Stats & WhyChooseUs 4-col on desktop |
-| Phase 5: Inner Pages | ✅ Complete | About, Services (5 pages), Portfolio, Contact, Privacy Policy |
-| Phase 5b: Animations | ⏳ Pending | Performant scroll animations (mobile-safe) |
-| Phase 6: 3D Door Animation | ⏳ Pending | Three.js / R3F |
-| Phase 7: SEO | ⏳ Pending | Meta tags, structured data |
-| Phase 8: Testing & Polish | ⏳ Pending | Cross-browser, performance |
+| Phase 5: Inner Pages | ✅ Complete | About, Services (5 pages), Portfolio, Contact, Privacy Policy, Terms |
+| Phase 5b: Animations | ✅ Complete | Hero line-by-line, GSAP horizontal scroll, reduced motion support |
+| Phase 6: 3D Door | ❌ Skipped | User rejected — not needed |
+| Phase 7: SEO | ✅ Complete | Meta tags, structured data, sitemap, robots.txt |
+| Phase 8: Testing & Polish | ✅ Complete | Low-end device optimization, lazy loading, unused deps removed |
 | Phase 9: Deployment | ⏳ Pending | Vercel deployment |
 
 ---
@@ -448,4 +448,4 @@ git push
 
 ---
 
-*Last updated: Phase 4c Complete - Mobile responsiveness & desktop grid fixes done*
+*Last updated: Phase 8 Complete - Testing & Polish, low-end device optimization done*

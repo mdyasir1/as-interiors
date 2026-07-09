@@ -65,6 +65,15 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-14 md:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
+              <img
+                src="/logo.png"
+                alt="A.S Interiors"
+                className={`h-8 md:h-10 w-auto transition-all duration-300 ${
+                  isScrolled ? 'brightness-0' : ''
+                }`}
+                width={40}
+                height={40}
+              />
               <span className={`text-lg md:text-2xl font-serif font-semibold ${textColor} group-hover:text-accent-gold transition-colors duration-300`}>
                 A.S Interiors
               </span>
@@ -179,9 +188,18 @@ export default function Navbar() {
               <div className="flex flex-col h-full">
                 {/* Menu Header */}
                 <div className="flex items-center justify-between p-4 border-b border-primary-100">
-                  <span className="text-lg font-serif font-semibold text-primary-800">
-                    A.S Interiors
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/logo.png"
+                      alt="A.S Interiors"
+                      className="h-7 w-auto brightness-0"
+                      width={28}
+                      height={28}
+                    />
+                    <span className="text-lg font-serif font-semibold text-primary-800">
+                      A.S Interiors
+                    </span>
+                  </div>
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-primary-600 hover:text-accent-gold transition-colors"

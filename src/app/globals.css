@@ -236,9 +236,38 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
   
   .hover-lift:hover {
     transform: none;
+  }
+}
+
+/* Performance: GPU acceleration for animated elements */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Performance: Reduce paint complexity */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Performance: Optimize scroll-linked animations */
+.scroll-animated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Performance: Reduce motion for low-end devices via class */
+@media (max-width: 768px) {
+  .reduce-motion-mobile * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
   }
 }

@@ -7,6 +7,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import { useReducedMotion, useIsMobile } from '@/hooks/useMediaQuery'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -47,8 +48,13 @@ export default function HorizontalShowcase() {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollContentRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
+  const prefersReducedMotion = useReducedMotion()
+  const isMobile = useIsMobile()
+  const useHorizontalScroll = !prefersReducedMotion && !isMobile
 
   useEffect(() => {
+    if (!useHorizontalScroll) return
+
     const ctx = gsap.context(() => {
       const scrollContent = scrollContentRef.current
       if (!scrollContent) return
@@ -74,8 +80,79 @@ export default function HorizontalShowcase() {
     })
 
     return () => ctx.revert()
-  }, [])
+  }, [useHorizontalScroll])
 
+  // Mobile / Reduced Motion: Show cards in a vertical grid
+  if (!useHorizontalScroll) {
+    return (
+      <section className="py-16 sm:py-20 md:py-24 bg-primary-900">
+        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="mb-10 sm:mb-12">
+            <p className="text-accent-gold text-xs sm:text-sm font-medium tracking-widest uppercase mb-2">
+              Why Choose Us
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white mb-4">
+              Excellence in Every Detail
+            </h2>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-accent-gold hover:text-accent-lightGold transition-colors"
+            >
+              <span className="text-sm">Learn More</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {highlights.map((item) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.title}
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-colors duration-300 group"
+                >
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-accent-gold/10 flex items-center justify-center mb-6 group-hover:bg-accent-gold/20 transition-colors">
+                    <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-accent-gold" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-serif text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-primary-300 leading-relaxed mb-6">
+                    {item.description}
+                  </p>
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-3xl sm:text-4xl font-bold text-accent-gold mb-1">
+                      {item.stat}
+                    </p>
+                    <p className="text-xs sm:text-sm text-primary-400">{item.statLabel}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* CTA */}
+          <div className="mt-8">
+            <div className="bg-accent-gold rounded-2xl p-6 sm:p-8 text-center">
+              <h3 className="text-2xl sm:text-3xl font-serif text-primary-900 mb-4">
+                Ready to Start?
+              </h3>
+              <p className="text-primary-800/80 mb-6 text-sm sm:text-base">
+                Get a free consultation and quote for your project.
+              </p>
+              <Button href="/contact" variant="dark" size="lg">
+                Get Free Quote
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Desktop: GSAP horizontal scroll
   return (
     <section ref={containerRef} className="relative h-screen overflow-hidden bg-primary-900">
       {/* Background */}
@@ -91,9 +168,9 @@ export default function HorizontalShowcase() {
         />
       </div>
 
-      {/* Content wrapper - handles layout flow */}
+      {/* Content wrapper */}
       <div className="relative h-full flex flex-col">
-        {/* Header - static positioned, always visible at top */}
+        {/* Header */}
         <div className="flex-shrink-0 px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-4 sm:pb-6">
           <div className="container-custom mx-auto">
             <div className="flex items-center justify-between">
@@ -118,7 +195,7 @@ export default function HorizontalShowcase() {
           </div>
         </div>
 
-        {/* Cards container - takes remaining height, cards positioned from top */}
+        {/* Cards container */}
         <div className="flex-1 relative overflow-hidden">
           <div
             ref={scrollContentRef}
