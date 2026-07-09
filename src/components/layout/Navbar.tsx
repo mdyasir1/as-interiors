@@ -6,12 +6,14 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown, Phone } from 'lucide-react'
 import { NAV_LINKS, SITE_CONFIG } from '@/lib/constants'
+import { useLenis } from '@/components/providers/LenisContext'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const pathname = usePathname()
+  const { lenis } = useLenis()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,17 +29,20 @@ export default function Navbar() {
     setActiveDropdown(null)
   }, [pathname])
 
-  // Lock scroll using Lenis mechanism when mobile menu is open
+  // Lock scroll using Lenis API when mobile menu is open
   useEffect(() => {
+    if (!lenis) return
+
     if (isOpen) {
-      document.documentElement.classList.add('lenis-stopped')
+      lenis.stop()
     } else {
-      document.documentElement.classList.remove('lenis-stopped')
+      lenis.start()
     }
+
     return () => {
-      document.documentElement.classList.remove('lenis-stopped')
+      lenis.start()
     }
-  }, [isOpen])
+  }, [isOpen, lenis])
 
   const handleDropdownToggle = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name)
