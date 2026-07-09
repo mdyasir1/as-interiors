@@ -26,6 +26,13 @@ export const SITE_CONFIG = {
   projectsCompleted: '500+',
 }
 
+// Individual exports for SEO and other modules
+export const SITE_URL = SITE_CONFIG.url
+export const COMPANY_NAME = SITE_CONFIG.name
+export const PHONE = SITE_CONFIG.phone
+export const EMAIL = SITE_CONFIG.email
+export const ADDRESS = SITE_CONFIG.address
+
 export const NAV_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },

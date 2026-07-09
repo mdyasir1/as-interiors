@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import { inter, playfair } from '@/lib/fonts'
-import { SITE_CONFIG } from '@/lib/constants'
+import { SITE_CONFIG, SITE_URL } from '@/lib/constants'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import ScrollProgress from '@/components/ui/ScrollProgress'
+import { generateLocalBusinessSchema, generateOrganizationSchema } from '@/lib/seo'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_CONFIG.name} - ${SITE_CONFIG.tagline}`,
     template: `%s | ${SITE_CONFIG.name}`,
@@ -30,21 +32,33 @@ export const metadata: Metadata = {
   creator: SITE_CONFIG.name,
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'en_IN',
     url: SITE_CONFIG.url,
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
     siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: `${SITE_URL}/og-default.jpg`,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_CONFIG.name} - Premium Aluminium & Glass Works`
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
+    images: [`${SITE_URL}/og-default.jpg`]
   },
   robots: {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: SITE_URL
+  }
 }
 
 export default function RootLayout({
@@ -52,8 +66,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const localBusinessSchema = generateLocalBusinessSchema()
+  const organizationSchema = generateOrganizationSchema()
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <SmoothScrollProvider>
           <ScrollProgress />

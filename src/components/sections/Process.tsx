@@ -1,17 +1,17 @@
 'use client'
 
-import { MessageCircle, Ruler, Paintbrush, Wrench, CheckCircle } from 'lucide-react'
+import { MessageSquare, Palette, Ruler, Wrench, Headphones } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import StaggerChildren from '@/components/animations/StaggerChildren'
 import { PROCESS_STEPS } from '@/lib/constants'
 
 const iconMap: Record<string, React.ElementType> = {
-  'Consultation': MessageCircle,
-  'Measurement': Ruler,
-  'Design': Paintbrush,
+  'Consultation': MessageSquare,
+  'Select Design': Palette,
+  'Measurements': Ruler,
   'Installation': Wrench,
-  'Handover': CheckCircle,
+  'Support': Headphones,
 }
 
 export default function Process() {
@@ -49,7 +49,7 @@ export default function Process() {
           stagger={0.1}
         >
           {PROCESS_STEPS.map((step, index) => {
-            const Icon = iconMap[step.title] || MessageCircle
+            const Icon = iconMap[step.title] || MessageSquare
             return (
               <div
                 key={step.title}

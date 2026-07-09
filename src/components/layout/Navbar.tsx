@@ -27,15 +27,15 @@ export default function Navbar() {
     setActiveDropdown(null)
   }, [pathname])
 
-  // Prevent body scroll when mobile menu is open
+  // Lock scroll using Lenis mechanism when mobile menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.documentElement.classList.add('lenis-stopped')
     } else {
-      document.body.style.overflow = 'unset'
+      document.documentElement.classList.remove('lenis-stopped')
     }
     return () => {
-      document.body.style.overflow = 'unset'
+      document.documentElement.classList.remove('lenis-stopped')
     }
   }, [isOpen])
 
@@ -48,122 +48,128 @@ export default function Navbar() {
   const hoverColor = isScrolled ? 'hover:text-accent-gold' : 'hover:text-accent-gold'
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 md:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className={`text-lg md:text-2xl font-serif font-semibold ${textColor} group-hover:text-accent-gold transition-colors duration-300`}>
-              A.S Interiors
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {NAV_LINKS.map((link) => (
-              <div
-                key={link.name}
-                className="relative"
-                onMouseEnter={() => link.children && setActiveDropdown(link.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link
-                  href={link.href}
-                  className={`flex items-center gap-1 py-2 text-sm font-medium ${hoverColor} transition-colors duration-200 ${
-                    pathname === link.href ? 'text-accent-gold' : textSecondaryColor
-                  }`}
-                >
-                  {link.name}
-                  {link.children && (
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === link.name ? 'rotate-180' : ''
-                      }`}
-                    />
-                  )}
-                </Link>
-
-                <AnimatePresence>
-                  {link.children && activeDropdown === link.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 w-64 pt-2"
-                    >
-                      <div className="bg-white rounded-lg shadow-lg border border-primary-100 py-2">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.name}
-                            href={child.href}
-                            className={`block px-4 py-2.5 text-sm transition-colors duration-200 ${
-                              pathname === child.href
-                                ? 'bg-accent-cream text-accent-darkGold'
-                                : 'text-primary-600 hover:bg-primary-50 hover:text-accent-gold'
-                            }`}
-                          >
-                            {child.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href={`tel:${SITE_CONFIG.phone}`}
-              className={`flex items-center gap-2 ${textSecondaryColor} hover:text-accent-gold transition-colors duration-300`}
-            >
-              <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">Call Us</span>
-            </a>
-            <Link href="/contact" className="btn-primary text-sm">
-              Get Quote
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/95 backdrop-blur-md shadow-sm'
+            : 'bg-transparent'
+        }`}
+      >
+        <nav className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 md:h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 group">
+              <span className={`text-lg md:text-2xl font-serif font-semibold ${textColor} group-hover:text-accent-gold transition-colors duration-300`}>
+                A.S Interiors
+              </span>
             </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+              {NAV_LINKS.map((link) => (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => link.children && setActiveDropdown(link.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link
+                    href={link.href}
+                    className={`flex items-center gap-1 py-2 text-sm font-medium ${hoverColor} transition-colors duration-200 ${
+                      pathname === link.href ? 'text-accent-gold' : textSecondaryColor
+                    }`}
+                  >
+                    {link.name}
+                    {link.children && (
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          activeDropdown === link.name ? 'rotate-180' : ''
+                        }`}
+                      />
+                    )}
+                  </Link>
+
+                  <AnimatePresence>
+                    {link.children && activeDropdown === link.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 w-64 pt-2"
+                      >
+                        <div className="bg-white rounded-lg shadow-lg border border-primary-100 py-2">
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.href}
+                              className={`block px-4 py-2.5 text-sm transition-colors duration-200 ${
+                                pathname === child.href
+                                  ? 'bg-accent-cream text-accent-darkGold'
+                                  : 'text-primary-600 hover:bg-primary-50 hover:text-accent-gold'
+                              }`}
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <a
+                href={`tel:${SITE_CONFIG.phone}`}
+                className={`flex items-center gap-2 ${textSecondaryColor} hover:text-accent-gold transition-colors duration-300`}
+              >
+                <Phone className="w-4 h-4" />
+                <span className="text-sm font-medium">Call Us</span>
+              </a>
+              <Link href="/contact" className="btn-primary text-sm">
+                Get Quote
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`lg:hidden p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${textColor} hover:text-accent-gold transition-colors duration-200`}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+        </nav>
+      </header>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${textColor} hover:text-accent-gold transition-colors duration-200`}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Rendered OUTSIDE header for proper z-index stacking */}
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Backdrop overlay */}
             <motion.div
+              key="mobile-overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] lg:hidden"
               onClick={() => setIsOpen(false)}
             />
 
+            {/* Sidebar panel */}
             <motion.div
+              key="mobile-sidebar"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-[85vw] max-w-[320px] bg-white shadow-xl lg:hidden"
+              className="fixed top-0 right-0 h-full w-[85vw] max-w-[320px] bg-white shadow-xl z-[100] lg:hidden"
             >
               <div className="flex flex-col h-full">
                 {/* Menu Header */}
@@ -269,6 +275,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   )
 }
