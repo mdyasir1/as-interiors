@@ -159,7 +159,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <Input
                     label="Your Name"
-                    placeholder="John Doe"
+                    placeholder="Rajesh Kumar"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <Input
                     label="Phone Number"
                     type="tel"
-                    placeholder="+91 98765 43210"
+                    placeholder="98765 43210"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     required
@@ -175,7 +175,7 @@ export default function ContactPage() {
                   <Input
                     label="Email Address"
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="rajesh@gmail.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
@@ -217,14 +217,23 @@ export default function ContactPage() {
           <AnimatedText as="h2" className="text-2xl sm:text-3xl font-serif text-primary-800 mb-4">
             Find Us
           </AnimatedText>
+          <AnimatedText as="p" delay={0.2} className="text-primary-600 text-sm sm:text-base max-w-2xl mx-auto px-4 sm:px-0">
+            {SITE_CONFIG.address.street}, {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state} {SITE_CONFIG.address.zip}
+          </AnimatedText>
         </div>
         <FadeIn direction="up">
-          <div className="aspect-[16/9] bg-primary-100 rounded-2xl overflow-hidden flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-primary-300 mx-auto mb-3" />
-              <p className="text-primary-500">Google Maps will be embedded here</p>
-              <p className="text-sm text-primary-400 mt-1">{SITE_CONFIG.address.city}, Andhra Pradesh</p>
-            </div>
+          <div className="aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-primary-100">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.1234567890123!2d80.6480!3d16.5062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3566f2f1e1e1e1%3A0x1234567890abcdef!2sPNT%20Colony%2C%20Vijayawada%2C%20Andhra%20Pradesh%20520015!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="A.S Interiors Location - Vijayawada"
+              className="w-full h-full"
+            />
           </div>
         </FadeIn>
       </SectionWrapper>
