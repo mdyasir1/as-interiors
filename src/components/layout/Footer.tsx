@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Instagram, Facebook, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react'
 import { SITE_CONFIG, SERVICES } from '@/lib/constants'
 
@@ -34,7 +35,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 mb-4">
-              <img
+              <Image
                 src="/logo.png"
                 alt="A.S Interiors"
                 className="h-8 md:h-10 w-auto"

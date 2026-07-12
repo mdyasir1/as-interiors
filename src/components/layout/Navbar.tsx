@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown, Phone } from 'lucide-react'
@@ -65,7 +66,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-14 md:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <img
+              <Image
                 src="/logo.png"
                 alt="A.S Interiors"
                 className={`h-8 md:h-10 w-auto transition-all duration-300 ${
@@ -73,6 +74,7 @@ export default function Navbar() {
                 }`}
                 width={40}
                 height={40}
+                priority
               />
               <span className={`text-lg md:text-2xl font-serif font-semibold ${textColor} group-hover:text-accent-gold transition-colors duration-300`}>
                 A.S Interiors
@@ -189,7 +191,7 @@ export default function Navbar() {
                 {/* Menu Header */}
                 <div className="flex items-center justify-between p-4 border-b border-primary-100">
                   <div className="flex items-center gap-2">
-                    <img
+                    <Image
                       src="/logo.png"
                       alt="A.S Interiors"
                       className="h-7 w-auto brightness-0"
