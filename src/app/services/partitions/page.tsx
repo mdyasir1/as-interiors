@@ -5,8 +5,19 @@ import { ArrowLeft, Check, Phone } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
+
+const partitionImages = [
+  { src: '/partitions/partition-01.jpg', alt: 'Partition Installation' },
+  { src: '/partitions/partition-02.jpg', alt: 'Partition Design' },
+  { src: '/partitions/partition-03.jpg', alt: 'Partition Model' },
+  { src: '/partitions/partition-04.jpg', alt: 'Partition Range' },
+  { src: '/partitions/partition-05.jpg', alt: 'Partition Style' },
+  { src: '/partitions/partition-06.jpg', alt: 'Partition Detail' },
+  { src: '/partitions/partition-07.jpg', alt: 'Partition Collection' },
+  { src: '/partitions/partition-08.jpg', alt: 'Partition Showcase' },
+]
 
 const aluminiumFeatures = [
   '50% Sound Proof',
@@ -109,8 +120,12 @@ export default function PartitionsPage() {
 
           <div>
             <FadeIn direction="right">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-8">
-                <ImagePlaceholder text="Partitions" className="w-full h-full" />
+              <div className="mb-8">
+                <ImageCarousel
+                  images={partitionImages}
+                  autoPlayInterval={4500}
+                  aspectRatio="aspect-[4/3]"
+                />
               </div>
             </FadeIn>
 

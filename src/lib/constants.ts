@@ -58,7 +58,7 @@ export const SERVICES = [
     shortDescription: 'Premium aluminium mosquito protection for every entrance.',
     description:
       'Our mosquito doors provide maximum protection without compromising on style. Available in aluminum open, grill, sliding, metal security, and fibre magnetic options. Window types include PVC mats, 1-inch frames, and sleek panel frames.',
-    image: '/images/services/mosquito-doors.jpg',
+    image: '/mosquito doors/mosquito-door-01.jpg',
     startingPrice: '₹1,499',
     features: [
       'Lock system',
@@ -88,7 +88,7 @@ export const SERVICES = [
     shortDescription: 'Modern aluminium windows for contemporary homes.',
     description:
       'Sleek, durable, and energy-efficient aluminium windows that enhance your home aesthetics while providing excellent ventilation. Available in sliding and domal designs with multiple glass options.',
-    image: '/images/services/aluminium-windows.jpg',
+    image: '/aluminium windows/window-01.jpg',
     startingPrice: '₹549/sft',
     features: [
       'Lock system',
@@ -110,7 +110,7 @@ export const SERVICES = [
     shortDescription: 'Smart home shutters at the touch of a button.',
     description:
       'Transform your home with our automated shutters. Control light, privacy, and security with a remote. Motor included for seamless automation. Our shutters are built with high-quality aluminium alloy construction and foam-filled profiles for additional strength and silent operation.',
-    image: '/images/services/automated-shutters.jpg',
+    image: '/shutters/shutter-01.jpg',
     startingPrice: '₹699/sft',
     motorPrice: '₹18,999 (excluded + GST)',
     features: [
@@ -157,7 +157,7 @@ export const SERVICES = [
     shortDescription: 'Durable aluminium cupboards for modern storage.',
     description:
       'Premium aluminium cupboards available in Indian profile, imported profile, and ACP sheet options with multiple colors. Choose between open or sliding door designs.',
-    image: '/images/services/aluminium-cupboards.jpg',
+    image: '/cupboards/cupboard-01.jpg',
     startingPrice: '₹649/sft',
     features: [
       'Waterproof',
@@ -180,7 +180,7 @@ export const SERVICES = [
     shortDescription: 'Aluminium and glass partitions for spaces.',
     description:
       'Premium partition solutions including aluminium cabins, toughened glass partitions, front glass doors, laminated glass works, and sandwich vacuum glass works.',
-    image: '/images/services/partitions.jpg',
+    image: '/partitions/partition-01.jpg',
     startingPrice: '₹349/sft',
     features: {
       aluminium: ['50% Sound Proof', 'Termite Proof', 'Easy Maintenance'],

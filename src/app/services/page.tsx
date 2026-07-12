@@ -1,15 +1,17 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
 import StaggerChildren from '@/components/animations/StaggerChildren'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 import PriceTag from '@/components/ui/PriceTag'
 import Button from '@/components/ui/Button'
 import { SERVICES } from '@/lib/constants'
+
+const BLUR_DATA_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AKwA//9k='
 
 export default function ServicesPage() {
   return (
@@ -51,9 +53,14 @@ export default function ServicesPage() {
             <Link key={service.id} href={`/services/${service.id}`} className="group block">
               <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  <ImagePlaceholder
-                    text={service.title}
-                    className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                   />
                   <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
                     <PriceTag price={service.startingPrice} label="Starting from" />

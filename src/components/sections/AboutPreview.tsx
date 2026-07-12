@@ -1,12 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Check } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
 import Button from '@/components/ui/Button'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+
+const BLUR_DATA_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AKwA//9k='
 
 const highlights = [
   'Own Manufacturing Workshop',
@@ -82,9 +84,14 @@ export default function AboutPreview() {
         <FadeIn direction="right" delay={0.3}>
           <div className="relative">
             <div className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl">
-              <ImagePlaceholder
-                text="Our Workshop"
-                className="w-full h-full"
+              <Image
+                src="/shop/shop-inside.jpg"
+                alt="A.S Interiors Workshop"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
               />
             </div>
             {/* Floating Stats Card */}

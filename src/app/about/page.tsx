@@ -5,9 +5,14 @@ import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
 import StaggerChildren from '@/components/animations/StaggerChildren'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
 import { SITE_CONFIG } from '@/lib/constants'
+
+const shopImages = [
+  { src: '/shop/shop-inside.jpg', alt: 'A.S Interiors Shop Inside' },
+  { src: '/shop/shop-with-owner.jpg', alt: 'A.S Interiors Shop with Owner' },
+]
 
 const values = [
   {
@@ -99,19 +104,12 @@ export default function AboutPage() {
           </FadeIn>
           <FadeIn direction="right" delay={0.2}>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                <ImagePlaceholder text="Our Workshop" className="w-full h-full" />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center">
-                    <Clock className="w-7 h-7 text-accent-gold" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-2xl text-primary-800">7+</p>
-                    <p className="text-sm text-primary-500">Years Experience</p>
-                  </div>
-                </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <ImageCarousel
+                  images={shopImages}
+                  autoPlayInterval={5000}
+                  aspectRatio="aspect-[4/3]"
+                />
               </div>
             </div>
           </FadeIn>

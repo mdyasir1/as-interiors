@@ -5,9 +5,22 @@ import { ArrowLeft, Check, Phone } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
 import FeatureList from '@/components/ui/FeatureList'
+
+const windowImages = [
+  { src: '/aluminium windows/window-01.jpg', alt: 'Aluminium Window Installation' },
+  { src: '/aluminium windows/window-02.jpg', alt: 'Aluminium Window Design' },
+  { src: '/aluminium windows/window-03.jpg', alt: 'Aluminium Window Model' },
+  { src: '/aluminium windows/window-04.jpg', alt: 'Aluminium Window Range' },
+  { src: '/aluminium windows/window-05.jpg', alt: 'Aluminium Window Style' },
+  { src: '/aluminium windows/window-06.jpg', alt: 'Aluminium Window Detail' },
+  { src: '/aluminium windows/window-07.jpg', alt: 'Aluminium Window Collection' },
+  { src: '/aluminium windows/window-08.jpg', alt: 'Aluminium Window Showcase' },
+  { src: '/aluminium windows/window-09.jpg', alt: 'Aluminium Window Premium' },
+  { src: '/aluminium windows/window-10.jpg', alt: 'Aluminium Window Range' },
+]
 
 const types = [
   'Sliding Windows',
@@ -100,8 +113,12 @@ export default function AluminiumWindowsPage() {
 
           <div>
             <FadeIn direction="right">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-8">
-                <ImagePlaceholder text="Aluminium Windows" className="w-full h-full" />
+              <div className="mb-8">
+                <ImageCarousel
+                  images={windowImages}
+                  autoPlayInterval={4500}
+                  aspectRatio="aspect-[4/3]"
+                />
               </div>
             </FadeIn>
 

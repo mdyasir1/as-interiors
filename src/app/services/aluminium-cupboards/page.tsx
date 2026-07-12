@@ -5,9 +5,27 @@ import { ArrowLeft, Check, Phone } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
 import FeatureList from '@/components/ui/FeatureList'
+
+const cupboardImages = [
+  { src: '/cupboards/cupboard-01.jpg', alt: 'Aluminium Cupboard Installation' },
+  { src: '/cupboards/cupboard-02.jpg', alt: 'Cupboard Design' },
+  { src: '/cupboards/cupboard-03.jpg', alt: 'Cupboard Interior' },
+  { src: '/cupboards/cupboard-04.jpg', alt: 'Kitchen Cupboard' },
+  { src: '/cupboards/cupboard-05.jpg', alt: 'Storage Cupboard' },
+  { src: '/cupboards/cupboard-06.jpg', alt: 'Cupboard Finish' },
+  { src: '/cupboards/cupboard-07.jpg', alt: 'Cupboard Detail' },
+  { src: '/cupboards/cupboard-08.jpg', alt: 'Premium Cupboard' },
+  { src: '/cupboards/cupboard-09.jpg', alt: 'Cupboard Model' },
+  { src: '/cupboards/cupboard-10.jpg', alt: 'Cupboard Range' },
+  { src: '/cupboards/cupboard-11.jpg', alt: 'Cupboard Collection' },
+  { src: '/cupboards/cupboard-12.jpg', alt: 'Cupboard Showcase' },
+  { src: '/cupboards/cupboard-13.jpg', alt: 'Cupboard Style' },
+  { src: '/cupboards/cupboard-14.jpg', alt: 'Cupboard Range' },
+  { src: '/cupboards/cupboard-15.png', alt: 'Cupboard Screenshot' },
+]
 
 const types = [
   'Indian Profile Cupboards',
@@ -100,8 +118,12 @@ export default function AluminiumCupboardsPage() {
 
           <div>
             <FadeIn direction="right">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-8">
-                <ImagePlaceholder text="Aluminium Cupboards" className="w-full h-full" />
+              <div className="mb-8">
+                <ImageCarousel
+                  images={cupboardImages}
+                  autoPlayInterval={4500}
+                  aspectRatio="aspect-[4/3]"
+                />
               </div>
             </FadeIn>
 

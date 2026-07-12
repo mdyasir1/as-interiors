@@ -5,8 +5,18 @@ import { ArrowLeft, Check, Phone, Zap } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
+
+const shutterImages = [
+  { src: '/shutters/shutter-01.jpg', alt: 'Automated Shutter Installation' },
+  { src: '/shutters/shutter-02.jpg', alt: 'Automated Shutter Design' },
+  { src: '/shutters/shutter-03.jpg', alt: 'Automated Shutter Model' },
+  { src: '/shutters/shutter-04.jpg', alt: 'Automated Shutter Range' },
+  { src: '/shutters/shutter-05.jpg', alt: 'Automated Shutter Style' },
+  { src: '/shutters/shutter-06.jpg', alt: 'Automated Shutter Detail' },
+  { src: '/shutters/shutter-07.jpg', alt: 'Automated Shutter Collection' },
+]
 
 const features = [
   'Automated Opening & Closing',
@@ -96,8 +106,12 @@ export default function AutomatedShuttersPage() {
 
           <div>
             <FadeIn direction="right">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-8">
-                <ImagePlaceholder text="Automated Shutters" className="w-full h-full" />
+              <div className="mb-8">
+                <ImageCarousel
+                  images={shutterImages}
+                  autoPlayInterval={4500}
+                  aspectRatio="aspect-[4/3]"
+                />
               </div>
             </FadeIn>
 

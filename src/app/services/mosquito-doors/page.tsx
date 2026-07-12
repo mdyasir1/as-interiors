@@ -6,12 +6,25 @@ import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
 import StaggerChildren from '@/components/animations/StaggerChildren'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
 import FeatureList from '@/components/ui/FeatureList'
 import { SERVICES, SITE_CONFIG } from '@/lib/constants'
 
 const service = SERVICES.find(s => s.id === 'mosquito-doors')!
+
+const mosquitoImages = [
+  { src: '/mosquito doors/mosquito-door-01.jpg', alt: 'Mosquito Door Installation' },
+  { src: '/mosquito doors/mosquito-door-02.jpg', alt: 'Mosquito Door Design' },
+  { src: '/mosquito doors/mosquito-door-03.jpg', alt: 'Mosquito Door Model' },
+  { src: '/mosquito doors/mosquito-door-04.jpg', alt: 'Mosquito Door Range' },
+  { src: '/mosquito doors/mosquito-door-05.webp', alt: 'Mosquito Door Style' },
+  { src: '/mosquito doors/mosquito-door-06.jpg', alt: 'Mosquito Door Detail' },
+  { src: '/mosquito doors/mosquito-door-07.jpg', alt: 'Mosquito Door Collection' },
+  { src: '/mosquito doors/mosquito-door-08.jpg', alt: 'Mosquito Door Showcase' },
+  { src: '/mosquito doors/mosquito-door-09.jpg', alt: 'Mosquito Door Premium' },
+  { src: '/mosquito doors/mosquito-door-10.jpg', alt: 'Mosquito Door Range' },
+]
 
 const types = [
   'Aluminium Open Mosquito Doors',
@@ -107,8 +120,12 @@ export default function MosquitoDoorsPage() {
 
           <div>
             <FadeIn direction="right">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-8">
-                <ImagePlaceholder text="Mosquito Doors" className="w-full h-full" />
+              <div className="mb-8">
+                <ImageCarousel
+                  images={mosquitoImages}
+                  autoPlayInterval={4500}
+                  aspectRatio="aspect-[4/3]"
+                />
               </div>
             </FadeIn>
 

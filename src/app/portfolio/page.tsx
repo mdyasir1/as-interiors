@@ -1,33 +1,89 @@
 'use client'
 
 import { useState } from 'react'
-import { Grid3X3, LayoutGrid, Maximize } from 'lucide-react'
+import Image from 'next/image'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
-import StaggerChildren from '@/components/animations/StaggerChildren'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 
 const categories = ['All', 'Mosquito Doors', 'Windows', 'Shutters', 'Cupboards', 'Partitions']
 
-const projects = [
-  { id: 1, title: 'Modern Mosquito Door Installation', category: 'Mosquito Doors', location: 'Vijayawada' },
-  { id: 2, title: 'Sliding Aluminium Windows', category: 'Windows', location: 'Guntur' },
-  { id: 3, title: 'Automated Shop Shutter', category: 'Shutters', location: 'Vijayawada' },
-  { id: 4, title: 'Office Partition Work', category: 'Partitions', location: 'Visakhapatnam' },
-  { id: 5, title: 'Kitchen Cupboard Installation', category: 'Cupboards', location: 'Vijayawada' },
-  { id: 6, title: 'Security Mosquito Door', category: 'Mosquito Doors', location: 'Guntur' },
-  { id: 7, title: 'Domal Window Replacement', category: 'Windows', location: 'Vijayawada' },
-  { id: 8, title: 'Garage Automated Shutter', category: 'Shutters', location: 'Krishna' },
-  { id: 9, title: 'Glass Cabin Partition', category: 'Partitions', location: 'Vijayawada' },
+const categoryMeta: Record<string, { title: string; subtitle: string }> = {
+  'Mosquito Doors': { title: 'Mosquito Doors', subtitle: 'Premium Protection' },
+  'Windows': { title: 'Aluminium Windows', subtitle: 'Modern Design' },
+  'Shutters': { title: 'Automated Shutters', subtitle: 'Smart Automation' },
+  'Cupboards': { title: 'Aluminium Cupboards', subtitle: 'Custom Storage' },
+  'Partitions': { title: 'Partitions & Glass', subtitle: 'Elegant Spaces' },
+}
+
+const BLUR_DATA_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AKwA//9k='
+
+const allProjects = [
+  { id: 'md1', src: '/mosquito doors/mosquito-door-01.jpg', category: 'Mosquito Doors' },
+  { id: 'md2', src: '/mosquito doors/mosquito-door-02.jpg', category: 'Mosquito Doors' },
+  { id: 'md3', src: '/mosquito doors/mosquito-door-03.jpg', category: 'Mosquito Doors' },
+  { id: 'md4', src: '/mosquito doors/mosquito-door-04.jpg', category: 'Mosquito Doors' },
+  { id: 'md5', src: '/mosquito doors/mosquito-door-05.webp', category: 'Mosquito Doors' },
+  { id: 'md6', src: '/mosquito doors/mosquito-door-06.jpg', category: 'Mosquito Doors' },
+  { id: 'md7', src: '/mosquito doors/mosquito-door-07.jpg', category: 'Mosquito Doors' },
+  { id: 'md8', src: '/mosquito doors/mosquito-door-08.jpg', category: 'Mosquito Doors' },
+  { id: 'md9', src: '/mosquito doors/mosquito-door-09.jpg', category: 'Mosquito Doors' },
+  { id: 'md10', src: '/mosquito doors/mosquito-door-10.jpg', category: 'Mosquito Doors' },
+
+  { id: 'w1', src: '/aluminium windows/window-01.jpg', category: 'Windows' },
+  { id: 'w2', src: '/aluminium windows/window-02.jpg', category: 'Windows' },
+  { id: 'w3', src: '/aluminium windows/window-03.jpg', category: 'Windows' },
+  { id: 'w4', src: '/aluminium windows/window-04.jpg', category: 'Windows' },
+  { id: 'w5', src: '/aluminium windows/window-05.jpg', category: 'Windows' },
+  { id: 'w6', src: '/aluminium windows/window-06.jpg', category: 'Windows' },
+  { id: 'w7', src: '/aluminium windows/window-07.jpg', category: 'Windows' },
+  { id: 'w8', src: '/aluminium windows/window-08.jpg', category: 'Windows' },
+  { id: 'w9', src: '/aluminium windows/window-09.jpg', category: 'Windows' },
+  { id: 'w10', src: '/aluminium windows/window-10.jpg', category: 'Windows' },
+
+  { id: 's1', src: '/shutters/shutter-01.jpg', category: 'Shutters' },
+  { id: 's2', src: '/shutters/shutter-02.jpg', category: 'Shutters' },
+  { id: 's3', src: '/shutters/shutter-03.jpg', category: 'Shutters' },
+  { id: 's4', src: '/shutters/shutter-04.jpg', category: 'Shutters' },
+  { id: 's5', src: '/shutters/shutter-05.jpg', category: 'Shutters' },
+  { id: 's6', src: '/shutters/shutter-06.jpg', category: 'Shutters' },
+  { id: 's7', src: '/shutters/shutter-07.jpg', category: 'Shutters' },
+
+  { id: 'c1', src: '/cupboards/cupboard-01.jpg', category: 'Cupboards' },
+  { id: 'c2', src: '/cupboards/cupboard-02.jpg', category: 'Cupboards' },
+  { id: 'c3', src: '/cupboards/cupboard-03.jpg', category: 'Cupboards' },
+  { id: 'c4', src: '/cupboards/cupboard-04.jpg', category: 'Cupboards' },
+  { id: 'c5', src: '/cupboards/cupboard-05.jpg', category: 'Cupboards' },
+  { id: 'c6', src: '/cupboards/cupboard-06.jpg', category: 'Cupboards' },
+  { id: 'c7', src: '/cupboards/cupboard-07.jpg', category: 'Cupboards' },
+  { id: 'c8', src: '/cupboards/cupboard-08.jpg', category: 'Cupboards' },
+  { id: 'c9', src: '/cupboards/cupboard-09.jpg', category: 'Cupboards' },
+  { id: 'c10', src: '/cupboards/cupboard-10.jpg', category: 'Cupboards' },
+  { id: 'c11', src: '/cupboards/cupboard-11.jpg', category: 'Cupboards' },
+  { id: 'c12', src: '/cupboards/cupboard-12.jpg', category: 'Cupboards' },
+  { id: 'c13', src: '/cupboards/cupboard-13.jpg', category: 'Cupboards' },
+  { id: 'c14', src: '/cupboards/cupboard-14.jpg', category: 'Cupboards' },
+  { id: 'c15', src: '/cupboards/cupboard-15.png', category: 'Cupboards' },
+
+  { id: 'p1', src: '/partitions/partition-01.jpg', category: 'Partitions' },
+  { id: 'p2', src: '/partitions/partition-02.jpg', category: 'Partitions' },
+  { id: 'p3', src: '/partitions/partition-03.jpg', category: 'Partitions' },
+  { id: 'p4', src: '/partitions/partition-04.jpg', category: 'Partitions' },
+  { id: 'p5', src: '/partitions/partition-05.jpg', category: 'Partitions' },
+  { id: 'p6', src: '/partitions/partition-06.jpg', category: 'Partitions' },
+  { id: 'p7', src: '/partitions/partition-07.jpg', category: 'Partitions' },
+  { id: 'p8', src: '/partitions/partition-08.jpg', category: 'Partitions' },
 ]
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState('All')
 
   const filteredProjects = activeCategory === 'All'
-    ? projects
-    : projects.filter(p => p.category === activeCategory)
+    ? allProjects
+    : allProjects.filter(p => p.category === activeCategory)
+
+  const isCupboardsOnly = activeCategory === 'Cupboards'
+  const isOtherOnly = activeCategory !== 'All' && activeCategory !== 'Cupboards'
 
   return (
     <>
@@ -73,27 +129,72 @@ export default function PortfolioPage() {
           </div>
         </FadeIn>
 
-        {/* Projects Grid */}
-        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.08}>
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
-              <div className="aspect-[4/3] relative overflow-hidden">
-                <ImagePlaceholder
-                  text={project.title}
-                  className="w-full h-full group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-primary-900/0 group-hover:bg-primary-900/40 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <Maximize className="w-8 h-8 text-white" />
+        {/* Cupboards masonry layout */}
+        {isCupboardsOnly && (
+          <div className="mb-12">
+            <FadeIn direction="up">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-serif text-primary-800">{categoryMeta['Cupboards'].title}</h2>
+                <p className="text-primary-500 text-sm mt-1">{categoryMeta['Cupboards'].subtitle}</p>
+              </div>
+            </FadeIn>
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+              {filteredProjects.map((project, index) => (
+                <div key={project.id} className="break-inside-avoid group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                  <Image
+                    src={project.src}
+                    alt={categoryMeta[project.category].title}
+                    width={800}
+                    height={600}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading={index < 6 ? 'eager' : 'lazy'}
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                  />
                 </div>
-              </div>
-              <div className="p-5">
-                <p className="text-xs text-accent-gold font-medium mb-1">{project.category}</p>
-                <h3 className="text-lg font-serif text-primary-800 mb-1">{project.title}</h3>
-                <p className="text-sm text-primary-500">{project.location}</p>
-              </div>
+              ))}
             </div>
-          ))}
-        </StaggerChildren>
+          </div>
+        )}
+
+        {/* Other categories masonry layout */}
+        {(isOtherOnly || activeCategory === 'All') && (
+          <div>
+            {activeCategory !== 'All' && activeCategory !== 'Cupboards' && (
+              <FadeIn direction="up">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-serif text-primary-800">{categoryMeta[activeCategory]?.title}</h2>
+                  <p className="text-primary-500 text-sm mt-1">{categoryMeta[activeCategory]?.subtitle}</p>
+                </div>
+              </FadeIn>
+            )}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+              {(isOtherOnly ? filteredProjects : filteredProjects.filter(p => p.category !== 'Cupboards')).map((project, index) => {
+                const meta = categoryMeta[project.category]
+                return (
+                  <div key={project.id} className="break-inside-avoid group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                    <Image
+                      src={project.src}
+                      alt={meta.title}
+                      width={800}
+                      height={600}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading={index < 6 ? 'eager' : 'lazy'}
+                      placeholder="blur"
+                      blurDataURL={BLUR_DATA_URL}
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-900/80 to-transparent p-4">
+                      <p className="text-xs text-accent-gold font-medium mb-0.5">{meta.subtitle}</p>
+                      <p className="text-white text-sm font-medium">{meta.title}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
