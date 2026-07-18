@@ -58,7 +58,7 @@ export const SERVICES = [
     shortDescription: 'Premium aluminium mosquito protection for every entrance.',
     description:
       'Our mosquito doors provide maximum protection without compromising on style. Available in aluminum open, grill, sliding, metal security, and fibre magnetic options. Window types include PVC mats, 1-inch frames, and sleek panel frames.',
-    image: '/mosquito doors/mosquito-door-01.jpg',
+    image: '/mosquito doors/mosquito-door-07.jpg',
     startingPrice: '₹1,499',
     features: [
       'Lock system',
@@ -88,7 +88,7 @@ export const SERVICES = [
     shortDescription: 'Modern aluminium windows for contemporary homes.',
     description:
       'Sleek, durable, and energy-efficient aluminium windows that enhance your home aesthetics while providing excellent ventilation. Available in sliding and domal designs with multiple glass options.',
-    image: '/aluminium windows/window-01.jpg',
+    image: '/aluminium windows/window-10.jpg',
     startingPrice: '₹549/sft',
     features: [
       'Lock system',
@@ -110,7 +110,7 @@ export const SERVICES = [
     shortDescription: 'Smart home shutters at the touch of a button.',
     description:
       'Transform your home with our automated shutters. Control light, privacy, and security with a remote. Motor included for seamless automation. Our shutters are built with high-quality aluminium alloy construction and foam-filled profiles for additional strength and silent operation.',
-    image: '/shutters/shutter-01.jpg',
+    image: '/shutters/shutter-04.jpg',
     startingPrice: '₹699/sft',
     motorPrice: '₹18,999 (excluded + GST)',
     features: [

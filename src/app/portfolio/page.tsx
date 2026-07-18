@@ -19,17 +19,18 @@ const categoryMeta: Record<string, { title: string; subtitle: string }> = {
 const BLUR_DATA_URL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AKwA//9k='
 
 const allProjects = [
+  { id: 'md7', src: '/mosquito doors/mosquito-door-07.jpg', category: 'Mosquito Doors' },
   { id: 'md1', src: '/mosquito doors/mosquito-door-01.jpg', category: 'Mosquito Doors' },
   { id: 'md2', src: '/mosquito doors/mosquito-door-02.jpg', category: 'Mosquito Doors' },
   { id: 'md3', src: '/mosquito doors/mosquito-door-03.jpg', category: 'Mosquito Doors' },
   { id: 'md4', src: '/mosquito doors/mosquito-door-04.jpg', category: 'Mosquito Doors' },
   { id: 'md5', src: '/mosquito doors/mosquito-door-05.webp', category: 'Mosquito Doors' },
   { id: 'md6', src: '/mosquito doors/mosquito-door-06.jpg', category: 'Mosquito Doors' },
-  { id: 'md7', src: '/mosquito doors/mosquito-door-07.jpg', category: 'Mosquito Doors' },
   { id: 'md8', src: '/mosquito doors/mosquito-door-08.jpg', category: 'Mosquito Doors' },
   { id: 'md9', src: '/mosquito doors/mosquito-door-09.jpg', category: 'Mosquito Doors' },
   { id: 'md10', src: '/mosquito doors/mosquito-door-10.jpg', category: 'Mosquito Doors' },
 
+  { id: 'w10', src: '/aluminium windows/window-10.jpg', category: 'Windows' },
   { id: 'w1', src: '/aluminium windows/window-01.jpg', category: 'Windows' },
   { id: 'w2', src: '/aluminium windows/window-02.jpg', category: 'Windows' },
   { id: 'w3', src: '/aluminium windows/window-03.jpg', category: 'Windows' },
@@ -39,12 +40,11 @@ const allProjects = [
   { id: 'w7', src: '/aluminium windows/window-07.jpg', category: 'Windows' },
   { id: 'w8', src: '/aluminium windows/window-08.jpg', category: 'Windows' },
   { id: 'w9', src: '/aluminium windows/window-09.jpg', category: 'Windows' },
-  { id: 'w10', src: '/aluminium windows/window-10.jpg', category: 'Windows' },
 
+  { id: 's4', src: '/shutters/shutter-04.jpg', category: 'Shutters' },
   { id: 's1', src: '/shutters/shutter-01.jpg', category: 'Shutters' },
   { id: 's2', src: '/shutters/shutter-02.jpg', category: 'Shutters' },
   { id: 's3', src: '/shutters/shutter-03.jpg', category: 'Shutters' },
-  { id: 's4', src: '/shutters/shutter-04.jpg', category: 'Shutters' },
   { id: 's5', src: '/shutters/shutter-05.jpg', category: 'Shutters' },
   { id: 's6', src: '/shutters/shutter-06.jpg', category: 'Shutters' },
   { id: 's7', src: '/shutters/shutter-07.jpg', category: 'Shutters' },

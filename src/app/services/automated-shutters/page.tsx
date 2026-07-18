@@ -9,10 +9,10 @@ import ImageCarousel from '@/components/ui/ImageCarousel'
 import Button from '@/components/ui/Button'
 
 const shutterImages = [
-  { src: '/shutters/shutter-01.jpg', alt: 'Automated Shutter Installation' },
-  { src: '/shutters/shutter-02.jpg', alt: 'Automated Shutter Design' },
-  { src: '/shutters/shutter-03.jpg', alt: 'Automated Shutter Model' },
-  { src: '/shutters/shutter-04.jpg', alt: 'Automated Shutter Range' },
+  { src: '/shutters/shutter-04.jpg', alt: 'Automated Shutter Installation' },
+  { src: '/shutters/shutter-01.jpg', alt: 'Automated Shutter Design' },
+  { src: '/shutters/shutter-02.jpg', alt: 'Automated Shutter Model' },
+  { src: '/shutters/shutter-03.jpg', alt: 'Automated Shutter Range' },
   { src: '/shutters/shutter-05.jpg', alt: 'Automated Shutter Style' },
   { src: '/shutters/shutter-06.jpg', alt: 'Automated Shutter Detail' },
   { src: '/shutters/shutter-07.jpg', alt: 'Automated Shutter Collection' },

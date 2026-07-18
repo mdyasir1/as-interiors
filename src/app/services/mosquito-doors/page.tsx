@@ -14,13 +14,13 @@ import { SERVICES, SITE_CONFIG } from '@/lib/constants'
 const service = SERVICES.find(s => s.id === 'mosquito-doors')!
 
 const mosquitoImages = [
-  { src: '/mosquito doors/mosquito-door-01.jpg', alt: 'Mosquito Door Installation' },
-  { src: '/mosquito doors/mosquito-door-02.jpg', alt: 'Mosquito Door Design' },
-  { src: '/mosquito doors/mosquito-door-03.jpg', alt: 'Mosquito Door Model' },
-  { src: '/mosquito doors/mosquito-door-04.jpg', alt: 'Mosquito Door Range' },
-  { src: '/mosquito doors/mosquito-door-05.webp', alt: 'Mosquito Door Style' },
-  { src: '/mosquito doors/mosquito-door-06.jpg', alt: 'Mosquito Door Detail' },
-  { src: '/mosquito doors/mosquito-door-07.jpg', alt: 'Mosquito Door Collection' },
+  { src: '/mosquito doors/mosquito-door-07.jpg', alt: 'Mosquito Door Installation' },
+  { src: '/mosquito doors/mosquito-door-01.jpg', alt: 'Mosquito Door Design' },
+  { src: '/mosquito doors/mosquito-door-02.jpg', alt: 'Mosquito Door Model' },
+  { src: '/mosquito doors/mosquito-door-03.jpg', alt: 'Mosquito Door Range' },
+  { src: '/mosquito doors/mosquito-door-04.jpg', alt: 'Mosquito Door Style' },
+  { src: '/mosquito doors/mosquito-door-05.webp', alt: 'Mosquito Door Detail' },
+  { src: '/mosquito doors/mosquito-door-06.jpg', alt: 'Mosquito Door Collection' },
   { src: '/mosquito doors/mosquito-door-08.jpg', alt: 'Mosquito Door Showcase' },
   { src: '/mosquito doors/mosquito-door-09.jpg', alt: 'Mosquito Door Premium' },
   { src: '/mosquito doors/mosquito-door-10.jpg', alt: 'Mosquito Door Range' },
