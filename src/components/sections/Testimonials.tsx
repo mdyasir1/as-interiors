@@ -167,6 +167,23 @@ export default function Testimonials() {
             </button>
           </div>
         </div>
+
+        {/* View More on Google */}
+        <div className="flex justify-center mt-8">
+          <a
+            href="https://www.google.com/search?q=A.S.+Interiors+Vijayawada+reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-accent-gold hover:text-accent-gold/80 font-medium transition-colors text-sm sm:text-base"
+          >
+            View More Reviews on Google
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        </div>
       </div>
     </SectionWrapper>
   )

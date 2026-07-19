@@ -224,7 +224,7 @@ export default function ContactPage() {
         <FadeIn direction="up">
           <div className="aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-primary-100">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.1234567890123!2d80.6480!3d16.5062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3566f2f1e1e1e1%3A0x1234567890abcdef!2sPNT%20Colony%2C%20Vijayawada%2C%20Andhra%20Pradesh%20520015!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826!2d80.6397685!3d16.5473426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e5acc5012f87%3A0x51ace2d587ae9b37!2sA.S.%20Interiors!5e0!3m2!1sen!2sin!4v1"
               width="100%"
               height="100%"
               style={{ border: 0 }}

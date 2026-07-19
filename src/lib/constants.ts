@@ -58,7 +58,7 @@ export const SERVICES = [
     shortDescription: 'Premium aluminium mosquito protection for every entrance.',
     description:
       'Our mosquito doors provide maximum protection without compromising on style. Available in aluminum open, grill, sliding, metal security, and fibre magnetic options. Window types include PVC mats, 1-inch frames, and sleek panel frames.',
-    image: '/mosquito doors/mosquito-door-07.jpg',
+    image: '/mosquito doors/mosquito-door-09.jpg',
     startingPrice: '₹1,499',
     features: [
       'Lock system',
@@ -88,7 +88,7 @@ export const SERVICES = [
     shortDescription: 'Modern aluminium windows for contemporary homes.',
     description:
       'Sleek, durable, and energy-efficient aluminium windows that enhance your home aesthetics while providing excellent ventilation. Available in sliding and domal designs with multiple glass options.',
-    image: '/aluminium windows/window-10.jpg',
+    image: '/aluminium windows/window-09.jpg',
     startingPrice: '₹549/sft',
     features: [
       'Lock system',
@@ -207,30 +207,67 @@ export const STATS = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    name: 'Rajesh Kumar',
-    role: 'Homeowner, Vijayawada',
+    name: 'Sathya Ravi Teja',
+    role: '10 months ago',
     content:
-      'A.S Interiors transformed our home with their premium mosquito doors. Excellent quality and professional installation!',
+      'I have contacted lot of similar interior works all around Vijayawada. But A.S interior works provided me the best quality service at reasonable prices. They have stunning designs for the homes, offices. They did interior works for my home it was fabulous. Thank you A.S interior works for the service. Wishing you a good business.',
     rating: 5,
-    image: '/images/testimonials/rajesh.jpg',
   },
   {
     id: 2,
-    name: 'Priya Sharma',
-    role: 'Interior Designer',
+    name: 'Krishna Kishore',
+    role: '4 weeks ago',
     content:
-      'Working with A.S Interiors was a pleasure. Their automated shutters are top-notch and add a luxury feel to any space.',
+      'Very professional and good quality of work. Highly recommend.',
     rating: 5,
-    image: '/images/testimonials/priya.jpg',
   },
   {
     id: 3,
-    name: 'Amit Patel',
-    role: 'Business Owner',
+    name: 'Mohammad Fariyaz',
+    role: '9 months ago',
     content:
-      'Best aluminium windows we have installed. Great quality, perfect fit, and excellent after-sales support.',
+      'Excellent service! Mr. Usman did an amazing job with the mosquito net repair work installation at my home. Highly recommended! Thank you Mr. Saadh.',
     rating: 5,
-    image: '/images/testimonials/amit.jpg',
+  },
+  {
+    id: 4,
+    name: 'Basha Sk',
+    role: '10 months ago',
+    content:
+      'Talking language is very good friendly staff. I am happy to give my work to A.S Interiors. Very good quality and finishing work and very reasonable price. I am satisfied.',
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: 'Sramayeva Jayathe',
+    role: '9 months ago',
+    content:
+      'Very excellent! We are happy with this folding mesh door with the aluminium grill and it looks very beautiful.',
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: 'Kommu Laxmna',
+    role: '4 days ago',
+    content:
+      'Very nice and good work. Finishing is nice.',
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: 'Kesavarao Darsinala',
+    role: '10 months ago',
+    content:
+      'Excellent work.',
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: 'Kuramarao 359',
+    role: '10 months ago',
+    content:
+      'Good work, good quality.',
+    rating: 5,
   },
 ]
 

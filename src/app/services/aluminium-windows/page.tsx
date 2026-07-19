@@ -10,7 +10,7 @@ import Button from '@/components/ui/Button'
 import FeatureList from '@/components/ui/FeatureList'
 
 const windowImages = [
-  { src: '/aluminium windows/window-10.jpg', alt: 'Aluminium Window Installation' },
+  { src: '/aluminium windows/window-09.jpg', alt: 'Aluminium Window Installation' },
   { src: '/aluminium windows/window-01.jpg', alt: 'Aluminium Window Design' },
   { src: '/aluminium windows/window-02.jpg', alt: 'Aluminium Window Model' },
   { src: '/aluminium windows/window-03.jpg', alt: 'Aluminium Window Range' },
@@ -19,7 +19,7 @@ const windowImages = [
   { src: '/aluminium windows/window-06.jpg', alt: 'Aluminium Window Collection' },
   { src: '/aluminium windows/window-07.jpg', alt: 'Aluminium Window Showcase' },
   { src: '/aluminium windows/window-08.jpg', alt: 'Aluminium Window Premium' },
-  { src: '/aluminium windows/window-09.jpg', alt: 'Aluminium Window Range' },
+  { src: '/aluminium windows/window-10.jpg', alt: 'Aluminium Window Range' },
 ]
 
 const types = [
