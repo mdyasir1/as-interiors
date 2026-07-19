@@ -88,7 +88,7 @@ export function generateLocalBusinessSchema() {
     image: `${SITE_URL}/logo.png`,
     sameAs: [
       'https://www.instagram.com/a.s_interior__works/',
-      'https://www.facebook.com/a.s_interior__works/'
+      'https://www.facebook.com/share/1BaFRagfUu/'
     ]
   }
 }
@@ -165,7 +165,7 @@ export function generateOrganizationSchema() {
     },
     sameAs: [
       'https://www.instagram.com/a.s_interior__works/',
-      'https://www.facebook.com/a.s_interior__works/'
+      'https://www.facebook.com/share/1BaFRagfUu/'
     ]
   }
 }

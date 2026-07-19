@@ -18,7 +18,7 @@ export const SITE_CONFIG = {
   },
   social: {
     instagram: 'a.s_interior__works',
-    facebook: 'a.s_interior__works',
+    facebook: 'https://www.facebook.com/share/1BaFRagfUu/',
     whatsapp: '917995944686',
   },
   workingHours: 'Mon-Sat: 9AM - 8PM',

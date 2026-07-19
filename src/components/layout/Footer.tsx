@@ -60,7 +60,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href={`https://facebook.com/${SITE_CONFIG.social.facebook}`}
+                href={SITE_CONFIG.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center text-primary-300 hover:bg-accent-gold hover:text-white transition-all duration-300"
