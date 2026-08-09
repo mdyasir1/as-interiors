@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import AnimatedText from '@/components/animations/AnimatedText'
 import FadeIn from '@/components/animations/FadeIn'
@@ -22,6 +22,7 @@ const serviceOptions = [
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -33,12 +34,29 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormStatus('submitting')
+    setErrorMessage('')
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json().catch(() => ({}))
+
+      if (!res.ok) {
+        setErrorMessage(data.error ?? 'Failed to send your message. Please try again.')
+        setFormStatus('error')
+        return
+      }
+
       setFormStatus('success')
       setFormData({ name: '', phone: '', email: '', service: '', message: '' })
-    }, 1500)
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.')
+      setFormStatus('error')
+    }
   }
 
   return (
@@ -156,7 +174,22 @@ export default function ContactPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <>
+                  {formStatus === 'error' && (
+                    <div
+                      className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-4 mb-6"
+                      role="alert"
+                    >
+                      <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-red-600">
+                        {errorMessage || 'Something went wrong. Please try again.'}{' '}
+                        <a href={`tel:${SITE_CONFIG.phone}`} className="font-semibold underline">
+                          Call {SITE_CONFIG.phone}
+                        </a>
+                      </p>
+                    </div>
+                  )}
+                  <form onSubmit={handleSubmit} className="space-y-5">
                   <Input
                     label="Your Name"
                     placeholder="Rajesh Kumar"
@@ -204,7 +237,8 @@ export default function ContactPage() {
                   >
                     Send Message
                   </Button>
-                </form>
+                  </form>
+                </>
               )}
             </div>
           </FadeIn>
