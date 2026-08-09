@@ -4,6 +4,7 @@ import {
   renderContactNotification,
   renderContactAutoReply,
 } from '@/lib/email-templates'
+import { SITE_CONFIG } from '@/lib/constants'
 
 export interface ContactFormData {
   name: string
@@ -11,6 +12,13 @@ export interface ContactFormData {
   email?: string
   service?: string
   message?: string
+}
+
+export class ValidationError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'ValidationError'
+  }
 }
 
 const MAX_LENGTHS: Record<keyof ContactFormData, number> = {
@@ -77,7 +85,7 @@ function getTransporter(): nodemailer.Transporter {
 
 function notificationText(data: ReturnType<typeof toContactData>): string {
   return [
-    'New enquiry received from the A.S Interiors website (asinteriors.co.in).',
+    `New enquiry received from the ${SITE_CONFIG.name} website (${SITE_CONFIG.url.replace('https://', '')}).`,
     '',
     `Name:    ${data.name}`,
     `Phone:   ${data.phone}`,
@@ -94,22 +102,22 @@ function autoReplyText(data: ReturnType<typeof toContactData>): string {
   return [
     `Dear ${firstName},`,
     '',
-    `Thank you for contacting A.S Interiors. We received your enquiry${data.service ? ` about ${data.service}` : ''}.`,
+    `Thank you for contacting ${SITE_CONFIG.name}. We received your enquiry${data.service ? ` about ${data.service}` : ''}.`,
     '',
     'Our team will contact you shortly within one business day (Mon-Sat, 9 AM - 8 PM).',
     '',
     'You can also reach us directly:',
-    'Phone: +91 79959 44686',
-    'Email: bzasaad786@gmail.com',
-    'WhatsApp: https://wa.me/917995944686',
+    `Phone: ${SITE_CONFIG.phone}`,
+    `Email: ${SITE_CONFIG.email}`,
+    `WhatsApp: https://wa.me/${SITE_CONFIG.social.whatsapp}`,
     '',
-    'Thank you for choosing A.S Interiors - premium aluminium & glass works across Andhra Pradesh.',
+    `Thank you for choosing ${SITE_CONFIG.name} - premium aluminium & glass works across Andhra Pradesh.`,
   ].join('\n')
 }
 
 export async function sendContactEmail(data: ContactFormData): Promise<void> {
   const { valid, error } = validateForm(data)
-  if (!valid) throw new Error(error ?? 'Invalid form data.')
+  if (!valid) throw new ValidationError(error ?? 'Invalid form data.')
 
   const user = process.env.EMAIL_USER!
   const contact = toContactData(data)

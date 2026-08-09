@@ -1,15 +1,30 @@
 import { NextResponse } from 'next/server'
-import { sendContactEmail, type ContactFormData } from '@/lib/mail'
+import { sendContactEmail, ValidationError, type ContactFormData } from '@/lib/mail'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
 const RATE_LIMIT_MAX = 5
+const RATE_LIMIT_PRUNE_INTERVAL_MS = RATE_LIMIT_WINDOW_MS
 
 const submissions = new Map<string, number[]>()
 
+let lastPruneAt = Date.now()
+
+function pruneStaleEntries(): void {
+  const now = Date.now()
+  if (now - lastPruneAt < RATE_LIMIT_PRUNE_INTERVAL_MS) return
+  lastPruneAt = now
+  submissions.forEach((timestamps, ip) => {
+    const fresh = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS)
+    if (fresh.length === 0) submissions.delete(ip)
+    else if (fresh.length !== timestamps.length) submissions.set(ip, fresh)
+  })
+}
+
 function rateLimited(ip: string): boolean {
+  pruneStaleEntries()
   const now = Date.now()
   const timestamps = (submissions.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS)
   if (timestamps.length >= RATE_LIMIT_MAX) {
@@ -58,16 +73,16 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true })
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return NextResponse.json({ error: error.message }, { status: 400 })
+    }
+
     const message = error instanceof Error ? error.message : 'Unknown error'
     console.error(`[api/contact] Failed to send enquiry: ${message}`)
 
-    const isValidationError =
-      typeof message === 'string' &&
-      /name|phone|email|too long|valid/i.test(message)
-
     return NextResponse.json(
-      { error: isValidationError ? message : 'Failed to send your message. Please try again or call us directly.' },
-      { status: isValidationError ? 400 : 500 }
+      { error: 'Failed to send your message. Please try again or call us directly.' },
+      { status: 500 }
     )
   }
 }

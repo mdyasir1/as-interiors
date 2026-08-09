@@ -1,4 +1,5 @@
 import type { ContactFormData } from '@/lib/mail'
+import { SITE_CONFIG } from '@/lib/constants'
 
 const COLORS = {
   dark: '#0d0d0d',
@@ -13,10 +14,11 @@ const COLORS = {
   sub: '#737373',
 }
 
-const PHONE_DISPLAY = '+91 79959 44686'
-const PHONE_TEL = 'tel:+917995944686'
-const BUSINESS_EMAIL = 'bzasaad786@gmail.com'
-const WHATSAPP = 'https://wa.me/917995944686'
+const PHONE_DISPLAY = SITE_CONFIG.phone
+const PHONE_TEL = `tel:${SITE_CONFIG.phone.replace(/\s/g, '')}`
+const BUSINESS_EMAIL = SITE_CONFIG.email
+const WHATSAPP = `https://wa.me/${SITE_CONFIG.social.whatsapp}`
+const SITE_NAME = SITE_CONFIG.name
 
 export function escapeHtml(value: string): string {
   return value
@@ -86,7 +88,7 @@ function shell({ preheader, body }: ShellOptions): string {
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background-color:${COLORS.card};border-radius:14px;overflow:hidden;border:1px solid ${COLORS.line};">
         <tr>
           <td class="hdr-pad" style="padding:30px 28px 22px;text-align:center;background-color:${COLORS.dark};border-bottom:1px solid ${COLORS.line};">
-            <p class="brand-title" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:24px;letter-spacing:3px;font-weight:bold;color:${COLORS.gold};">A.S INTERIORS</p>
+            <p class="brand-title" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:24px;letter-spacing:3px;font-weight:bold;color:${COLORS.gold};">${SITE_NAME.toUpperCase()}</p>
             <p class="brand-sub" style="margin:8px 0 0;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:${COLORS.sub};">Aluminium &amp; Glass Works &bull; Vijayawada</p>
             <div style="margin:14px auto 0;width:42px;height:2px;background-color:${COLORS.gold};"></div>
           </td>
@@ -135,7 +137,7 @@ function linkText(value: string, href?: string): string {
 export function renderContactNotification(data: ContactData): string {
   const body = `
     <h2 class="body-h2" style="margin:0 0 6px;font-family:Georgia,'Times New Roman',serif;font-size:22px;color:${COLORS.text};">New Website Enquiry</h2>
-    <p class="body-text" style="margin:0 0 22px;font-size:13px;color:${COLORS.muted};line-height:1.6;">A customer filled the contact form on asinteriors.co.in</p>
+    <p class="body-text" style="margin:0 0 22px;font-size:13px;color:${COLORS.muted};line-height:1.6;">A customer filled the contact form on ${SITE_CONFIG.url.replace('https://', '')}</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
       ${detailRow('NAME', linkText(data.name))}
       ${detailRow('PHONE', linkText(data.phone, `tel:${data.phone}`))}
@@ -185,7 +187,7 @@ export function renderContactAutoReply(data: ContactData): string {
       </tr>
     </table>
     <p class="body-text" style="margin:20px 0 0;font-size:13px;color:${COLORS.muted};line-height:1.7;">
-      Thank you for choosing <strong style="color:${COLORS.text};">A.S Interiors</strong> &mdash; premium aluminium &amp; glass works across Andhra Pradesh.
+      Thank you for choosing <strong style="color:${COLORS.text};">${SITE_NAME}</strong> &mdash; premium aluminium &amp; glass works across Andhra Pradesh.
     </p>`
 
   return shell({
