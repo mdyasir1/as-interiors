@@ -171,7 +171,7 @@ export default function Testimonials() {
         {/* View More on Google */}
         <div className="flex justify-center mt-8">
           <a
-            href="https://www.google.com/search?q=A.S.+Interiors+Vijayawada+reviews"
+            href="https://share.google/m9H1xeJbUo2apwTqT"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-accent-gold hover:text-accent-gold/80 font-medium transition-colors text-sm sm:text-base"
